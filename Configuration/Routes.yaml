@@ -1,0 +1,23 @@
+#                                                                        #
+# Routes configuration                                                   #
+#                                                                        #
+# This file contains the configuration for the MVC router.               #
+# Just add your own modifications as necessary.                          #
+#                                                                        #
+# Please refer to the Flow manual for possible configuration options.   #
+#                                                                        #
+
+##
+# Subroutes from the Welcome package.
+#
+# If the package "Welcome" is installed, its fallback route will point to an
+# informative welcome screen.
+-
+  name: 'AgzHack.Api'
+  uriPattern: '<ApiSubroutes>'
+  defaults:
+    '@package':    'AgzHack.Api'
+    '@format':     'html'
+  subRoutes:
+    ApiSubroutes:
+      package: AgzHack.Api

@@ -1,0 +1,93 @@
+Exception #1297759968 in line 210 of /var/www/lux/Data/Temporary/Development/Cache/Code/Flow_Object_Classes/Neos_Flow_Mvc_Controller_Argument.php: Could not convert target type "AgzHack\Geo\Domain\Model\Coordinate": Missing constructor argument "longitude" for object of type "AgzHack\Geo\Domain\Model\Coordinate".
+
+27 Neos\Flow\Property\PropertyMapper_Original::convert(array|2|, "AgzHack\Geo\Domain\Model\Coordinate", Neos\Flow\Mvc\Controller\MvcPropertyMappingConfiguration)
+26 Neos\Flow\Mvc\Controller\Argument_Original::setValue(array|2|)
+25 Neos\Flow\Mvc\Controller\AbstractController::mapRequestArgumentsToControllerArguments()
+24 AgzHack\Api\Controller\LightMarkersController::mapRequestArgumentsToControllerArguments()
+23 call_user_func_array(array|2|, array|0|)
+22 AgzHack\Api\Controller\LightMarkersController::Flow_Aop_Proxy_invokeJoinPoint(Neos\Flow\Aop\JoinPoint)
+21 Neos\Flow\Aop\Advice\AdviceChain::proceed(Neos\Flow\Aop\JoinPoint)
+20 Neos\Flow\Security\Aspect\PolicyEnforcementAspect_Original::enforcePolicy(Neos\Flow\Aop\JoinPoint)
+19 Neos\Flow\Aop\Advice\AroundAdvice::invoke(Neos\Flow\Aop\JoinPoint)
+18 Neos\Flow\Aop\Advice\AdviceChain::proceed(Neos\Flow\Aop\JoinPoint)
+17 AgzHack\Api\Controller\LightMarkersController::mapRequestArgumentsToControllerArguments()
+16 Neos\Flow\Mvc\Controller\ActionController_Original::processRequest(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+15 AgzHack\Api\Controller\LightMarkersController::processRequest(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+14 call_user_func_array(array|2|, array|2|)
+13 AgzHack\Api\Controller\LightMarkersController::Flow_Aop_Proxy_invokeJoinPoint(Neos\Flow\Aop\JoinPoint)
+12 Neos\Flow\Aop\Advice\AdviceChain::proceed(Neos\Flow\Aop\JoinPoint)
+11 Neos\Flow\Security\Aspect\PolicyEnforcementAspect_Original::enforcePolicy(Neos\Flow\Aop\JoinPoint)
+10 Neos\Flow\Aop\Advice\AroundAdvice::invoke(Neos\Flow\Aop\JoinPoint)
+9 Neos\Flow\Aop\Advice\AdviceChain::proceed(Neos\Flow\Aop\JoinPoint)
+8 AgzHack\Api\Controller\LightMarkersController::processRequest(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+7 Neos\Flow\Mvc\Dispatcher_Original::initiateDispatchLoop(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+6 Neos\Flow\Mvc\Dispatcher_Original::dispatch(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+5 Neos\Flow\Mvc\DispatchComponent_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+4 Neos\Flow\Http\Component\ComponentChain_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+3 Neos\Flow\Http\Component\ComponentChain_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+2 Neos\Flow\Http\RequestHandler::handleRequest()
+1 Neos\Flow\Core\Bootstrap::run()
+
+Previous exception: Exception #1268734872 in line 244 of /var/www/lux/Data/Temporary/Development/Cache/Code/Flow_Object_Classes/Neos_Flow_Property_TypeConverter_PersistentObjectConverter.php: Missing constructor argument "longitude" for object of type "AgzHack\Geo\Domain\Model\Coordinate".
+
+31 Neos\Flow\Property\TypeConverter\ObjectConverter_Original::buildObject(array|0|, "AgzHack\Geo\Domain\Model\Coordinate")
+30 Neos\Flow\Property\TypeConverter\PersistentObjectConverter_Original::handleArrayData(array|2|, "AgzHack\Geo\Domain\Model\Coordinate", array|0|, Neos\Flow\Mvc\Controller\MvcPropertyMappingConfiguration)
+29 Neos\Flow\Property\TypeConverter\PersistentObjectConverter_Original::convertFrom(array|2|, "AgzHack\Geo\Domain\Model\Coordinate", array|0|, Neos\Flow\Mvc\Controller\MvcPropertyMappingConfiguration)
+28 Neos\Flow\Property\PropertyMapper_Original::doMapping(array|2|, "AgzHack\Geo\Domain\Model\Coordinate", Neos\Flow\Mvc\Controller\MvcPropertyMappingConfiguration, array|0|)
+27 Neos\Flow\Property\PropertyMapper_Original::convert(array|2|, "AgzHack\Geo\Domain\Model\Coordinate", Neos\Flow\Mvc\Controller\MvcPropertyMappingConfiguration)
+26 Neos\Flow\Mvc\Controller\Argument_Original::setValue(array|2|)
+25 Neos\Flow\Mvc\Controller\AbstractController::mapRequestArgumentsToControllerArguments()
+24 AgzHack\Api\Controller\LightMarkersController::mapRequestArgumentsToControllerArguments()
+23 call_user_func_array(array|2|, array|0|)
+22 AgzHack\Api\Controller\LightMarkersController::Flow_Aop_Proxy_invokeJoinPoint(Neos\Flow\Aop\JoinPoint)
+21 Neos\Flow\Aop\Advice\AdviceChain::proceed(Neos\Flow\Aop\JoinPoint)
+20 Neos\Flow\Security\Aspect\PolicyEnforcementAspect_Original::enforcePolicy(Neos\Flow\Aop\JoinPoint)
+19 Neos\Flow\Aop\Advice\AroundAdvice::invoke(Neos\Flow\Aop\JoinPoint)
+18 Neos\Flow\Aop\Advice\AdviceChain::proceed(Neos\Flow\Aop\JoinPoint)
+17 AgzHack\Api\Controller\LightMarkersController::mapRequestArgumentsToControllerArguments()
+16 Neos\Flow\Mvc\Controller\ActionController_Original::processRequest(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+15 AgzHack\Api\Controller\LightMarkersController::processRequest(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+14 call_user_func_array(array|2|, array|2|)
+13 AgzHack\Api\Controller\LightMarkersController::Flow_Aop_Proxy_invokeJoinPoint(Neos\Flow\Aop\JoinPoint)
+12 Neos\Flow\Aop\Advice\AdviceChain::proceed(Neos\Flow\Aop\JoinPoint)
+11 Neos\Flow\Security\Aspect\PolicyEnforcementAspect_Original::enforcePolicy(Neos\Flow\Aop\JoinPoint)
+10 Neos\Flow\Aop\Advice\AroundAdvice::invoke(Neos\Flow\Aop\JoinPoint)
+9 Neos\Flow\Aop\Advice\AdviceChain::proceed(Neos\Flow\Aop\JoinPoint)
+8 AgzHack\Api\Controller\LightMarkersController::processRequest(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+7 Neos\Flow\Mvc\Dispatcher_Original::initiateDispatchLoop(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+6 Neos\Flow\Mvc\Dispatcher_Original::dispatch(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+5 Neos\Flow\Mvc\DispatchComponent_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+4 Neos\Flow\Http\Component\ComponentChain_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+3 Neos\Flow\Http\Component\ComponentChain_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+2 Neos\Flow\Http\RequestHandler::handleRequest()
+1 Neos\Flow\Core\Bootstrap::run()
+
+
+HTTP REQUEST:
+GET /light-markers?northEast[latitude]=1&northEast[longitude]=2&southWest[latitude]=2&southWest[longitude]=5?key=ae HTTP/1.1
+Host: localhost:1003
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+Key: 809016095965235
+Postman-Token: ec453050-7a86-ab6a-2a60-19ab40f04a9d
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cache-Control: no-cache
+
+
+
+HTTP RESPONSE:
+[response was empty]
+
+PHP PROCESS:
+Inode: 3952909
+PID: 15
+UID: 1000
+GID: 1000
+User: 
+
+    [array] => 
+        previousException:
+        [string] => Exception #1268734872 in line 244 of /var/www/lux/Data/Temporary/Development/Cache/Code/Flow_Object_Classes/Neos_Flow_Property_TypeConverter_PersistentObjectConverter.php: Missing constructor argument "longitude" for object of type "AgzHack\Geo\Domain\Model\Coordinate".
+

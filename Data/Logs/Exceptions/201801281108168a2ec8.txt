@@ -1,0 +1,83 @@
+Exception: Argument 1 passed to AgzHack\Auth\Domain\Repository\UserAccountRepository_Original::findOneHavingAccount() must be an instance of Neos\Flow\Security\Account, null given
+
+44 AgzHack\Auth\Domain\Repository\UserAccountRepository_Original::findOneHavingAccount(NULL)
+43 call_user_func_array(array|2|, array|1|)
+42 Neos\Flow\ObjectManagement\DependencyInjection\DependencyProxy::__call("findOneHavingAccount", array|1|)
+41 AgzHack\Auth\Service\AuthService_Original::getAuthenticatedUserAccount()
+40 call_user_func_array(array|2|, array|0|)
+39 Neos\Flow\ObjectManagement\DependencyInjection\DependencyProxy::__call("getAuthenticatedUserAccount", array|0|)
+38 AgzHack\Lux\Service\LightMarkerService_Original::addDiscreteMarker(AgzHack\Lux\Domain\Model\LightMarker)
+37 call_user_func_array(array|2|, array|1|)
+36 Neos\Flow\ObjectManagement\DependencyInjection\DependencyProxy::__call("addDiscreteMarker", array|1|)
+35 AgzHack\Api\Controller\LightMarkersController_Original::createAction(AgzHack\Lux\Domain\Model\LightMarker)
+34 AgzHack\Api\Controller\LightMarkersController::createAction(AgzHack\Lux\Domain\Model\LightMarker)
+33 call_user_func_array(array|2|, array|1|)
+32 AgzHack\Api\Controller\LightMarkersController::Flow_Aop_Proxy_invokeJoinPoint(Neos\Flow\Aop\JoinPoint)
+31 Neos\Flow\Aop\Advice\AdviceChain::proceed(Neos\Flow\Aop\JoinPoint)
+30 Neos\Flow\Security\Aspect\PolicyEnforcementAspect_Original::enforcePolicy(Neos\Flow\Aop\JoinPoint)
+29 Neos\Flow\Aop\Advice\AroundAdvice::invoke(Neos\Flow\Aop\JoinPoint)
+28 Neos\Flow\Aop\Advice\AdviceChain::proceed(Neos\Flow\Aop\JoinPoint)
+27 AgzHack\Api\Controller\LightMarkersController::createAction(AgzHack\Lux\Domain\Model\LightMarker)
+26 call_user_func_array(array|2|, array|1|)
+25 Neos\Flow\Mvc\Controller\ActionController_Original::callActionMethod()
+24 AgzHack\Api\Controller\LightMarkersController::callActionMethod()
+23 call_user_func_array(array|2|, array|0|)
+22 AgzHack\Api\Controller\LightMarkersController::Flow_Aop_Proxy_invokeJoinPoint(Neos\Flow\Aop\JoinPoint)
+21 Neos\Flow\Aop\Advice\AdviceChain::proceed(Neos\Flow\Aop\JoinPoint)
+20 Neos\Flow\Security\Aspect\PolicyEnforcementAspect_Original::enforcePolicy(Neos\Flow\Aop\JoinPoint)
+19 Neos\Flow\Aop\Advice\AroundAdvice::invoke(Neos\Flow\Aop\JoinPoint)
+18 Neos\Flow\Aop\Advice\AdviceChain::proceed(Neos\Flow\Aop\JoinPoint)
+17 AgzHack\Api\Controller\LightMarkersController::callActionMethod()
+16 Neos\Flow\Mvc\Controller\ActionController_Original::processRequest(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+15 AgzHack\Api\Controller\LightMarkersController::processRequest(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+14 call_user_func_array(array|2|, array|2|)
+13 AgzHack\Api\Controller\LightMarkersController::Flow_Aop_Proxy_invokeJoinPoint(Neos\Flow\Aop\JoinPoint)
+12 Neos\Flow\Aop\Advice\AdviceChain::proceed(Neos\Flow\Aop\JoinPoint)
+11 Neos\Flow\Security\Aspect\PolicyEnforcementAspect_Original::enforcePolicy(Neos\Flow\Aop\JoinPoint)
+10 Neos\Flow\Aop\Advice\AroundAdvice::invoke(Neos\Flow\Aop\JoinPoint)
+9 Neos\Flow\Aop\Advice\AdviceChain::proceed(Neos\Flow\Aop\JoinPoint)
+8 AgzHack\Api\Controller\LightMarkersController::processRequest(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+7 Neos\Flow\Mvc\Dispatcher_Original::initiateDispatchLoop(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+6 Neos\Flow\Mvc\Dispatcher_Original::dispatch(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+5 Neos\Flow\Mvc\DispatchComponent_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+4 Neos\Flow\Http\Component\ComponentChain_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+3 Neos\Flow\Http\Component\ComponentChain_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+2 Neos\Flow\Http\RequestHandler::handleRequest()
+1 Neos\Flow\Core\Bootstrap::run()
+
+
+HTTP REQUEST:
+POST /light-markers HTTP/1.1
+Host: localhost:1003
+Connection: keep-alive
+Content-Length: 133
+Origin: chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop
+Key: 809016095965235
+Content-Type: application/json
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+Postman-Token: 6e7ce9a1-8ac3-8c59-4bdd-2778d74f403a
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cache-Control: no-cache
+
+{ "lightMarker": {
+        "coordinate": {
+            "latitude": 12.2440693,
+            "longitude": -39.0022769
+        }
+    }
+}
+
+HTTP RESPONSE:
+[response was empty]
+
+PHP PROCESS:
+Inode: 3952909
+PID: 13
+UID: 1000
+GID: 1000
+User: 
+
+    [array] => 
+

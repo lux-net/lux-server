@@ -1,0 +1,53 @@
+Exception #1: Warning: class_parents(): Class TYPO3\Flow\Property\TypeConverter\PersistentObjectConverter does not exist and could not be loaded in /var/www/lux/Data/Temporary/Development/Cache/Code/Flow_Object_Classes/Neos_Flow_Property_PropertyMappingConfiguration.php line 329
+
+14 Neos\Flow\Error\ErrorHandler::handleError(2, "class_parents(): Class TYPO3\Flow\Property\TypeCon…ctConverter does not exist and could not be loaded", "/var/www/lux/Data/Temporary/Development/Cache/Code…eos_Flow_Property_PropertyMappingConfiguration.php", 329, array|1|)
+13 class_parents("TYPO3\Flow\Property\TypeConverter\PersistentObjectConverter")
+12 Neos\Flow\Property\PropertyMappingConfiguration_Original::getTypeConvertersWithParentClasses("TYPO3\Flow\Property\TypeConverter\PersistentObjectConverter")
+11 Neos\Flow\Property\PropertyMappingConfiguration_Original::setTypeConverterOption("TYPO3\Flow\Property\TypeConverter\PersistentObjectConverter", 1, TRUE)
+10 AgzHack\Api\Controller\LightMarkersController_Original::initializeCreateAction()
+9 call_user_func(array|2|)
+8 Neos\Flow\Mvc\Controller\ActionController_Original::processRequest(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+7 Neos\Flow\Mvc\Dispatcher_Original::initiateDispatchLoop(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+6 Neos\Flow\Mvc\Dispatcher_Original::dispatch(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+5 Neos\Flow\Mvc\DispatchComponent_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+4 Neos\Flow\Http\Component\ComponentChain_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+3 Neos\Flow\Http\Component\ComponentChain_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+2 Neos\Flow\Http\RequestHandler::handleRequest()
+1 Neos\Flow\Core\Bootstrap::run()
+
+
+HTTP REQUEST:
+POST /light-markers HTTP/1.1
+Host: localhost:1003
+Connection: keep-alive
+Content-Length: 198
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+Origin: chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop
+Postman-Token: 40c15495-09cb-8818-10bc-36b568663e1d
+Content-Type: application/json
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cache-Control: no-cache
+
+{ "lightMarker": {
+        "coordinate": {
+            "latitude": 12.2440693,
+            "latitudeLongitudeString": "12.2440693,-39.0022769",
+            "longitude": -39.0022769
+        }
+    }
+}
+
+HTTP RESPONSE:
+[response was empty]
+
+PHP PROCESS:
+Inode: 3952909
+PID: 10
+UID: 1000
+GID: 1000
+User: 
+
+    [array] => 
+

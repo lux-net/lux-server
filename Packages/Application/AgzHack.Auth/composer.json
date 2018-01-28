@@ -1,0 +1,18 @@
+{
+    "description": "",
+    "type": "neos-package",
+    "name": "agzhack/auth",
+    "require": {
+        "neos/flow": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "AgzHack\\Auth\\": "Classes/"
+        }
+    },
+    "extra": {
+        "neos": {
+            "package-key": "AgzHack.Auth"
+        }
+    }
+}

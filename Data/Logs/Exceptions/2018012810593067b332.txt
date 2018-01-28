@@ -1,0 +1,53 @@
+Exception #1222268609 in line 62 of /var/www/lux/Data/Temporary/Development/Cache/Code/Flow_Object_Classes/Neos_Flow_Security_Aspect_PolicyEnforcementAspect.php: Access denied for method
+Method: AgzHack\Api\Controller\LightMarkersController::__construct()
+
+Evaluated following 1 privilege target(s):
+"AgzHack.Api:LightMarkersController.allAction": ABSTAIN
+(0 granted, 0 denied, 1 abstained)
+
+Authenticated roles: Neos.Flow:Everybody, Neos.Flow:AuthenticatedUser
+
+16 Neos\Flow\Security\Authorization\Interceptor\PolicyEnforcement_Original::invoke()
+15 Neos\Flow\Security\Aspect\PolicyEnforcementAspect_Original::enforcePolicy(Neos\Flow\Aop\JoinPoint)
+14 Neos\Flow\Aop\Advice\AroundAdvice::invoke(Neos\Flow\Aop\JoinPoint)
+13 Neos\Flow\Aop\Advice\AdviceChain::proceed(Neos\Flow\Aop\JoinPoint)
+12 AgzHack\Api\Controller\LightMarkersController::__construct()
+11 Neos\Utility\ObjectAccess::instantiateClass("AgzHack\Api\Controller\LightMarkersController", array|0|)
+10 Neos\Flow\ObjectManagement\ObjectManager::instantiateClass("AgzHack\Api\Controller\LightMarkersController", array|0|)
+9 Neos\Flow\ObjectManagement\ObjectManager::get("AgzHack\Api\Controller\LightMarkersController")
+8 Neos\Flow\Mvc\Dispatcher_Original::resolveController(Neos\Flow\Mvc\ActionRequest)
+7 Neos\Flow\Mvc\Dispatcher_Original::initiateDispatchLoop(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+6 Neos\Flow\Mvc\Dispatcher_Original::dispatch(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+5 Neos\Flow\Mvc\DispatchComponent_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+4 Neos\Flow\Http\Component\ComponentChain_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+3 Neos\Flow\Http\Component\ComponentChain_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+2 Neos\Flow\Http\RequestHandler::handleRequest()
+1 Neos\Flow\Core\Bootstrap::run()
+
+
+HTTP REQUEST:
+GET /light-markers?northEast[latitude]=3211&northEast[longitude]=2321&southWest[latitude]=232&southWest[longitude]=532 HTTP/1.1
+Host: localhost:1003
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+Key: 809016095965235
+Postman-Token: a8f43da4-89ef-5976-08c0-c877756b05ff
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cache-Control: no-cache
+
+
+
+HTTP RESPONSE:
+[response was empty]
+
+PHP PROCESS:
+Inode: 3952909
+PID: 12
+UID: 1000
+GID: 1000
+User: 
+
+    [array] => 
+

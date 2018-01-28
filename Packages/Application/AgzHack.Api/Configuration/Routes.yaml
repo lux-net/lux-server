@@ -1,0 +1,16 @@
+################################################################################################################
+# Routes
+################################################################################################################
+-
+  name: 'Light resource'
+  uriPattern: 'light-markers'
+  defaults:
+    '@controller': 'LightMarkers'
+    '@action':     'index'
+
+-
+  name: 'User Auth'
+  uriPattern: 'login'
+  defaults:
+    '@controller': 'users'
+    '@action':     'login'

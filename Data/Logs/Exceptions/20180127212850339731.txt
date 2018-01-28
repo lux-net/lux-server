@@ -1,0 +1,69 @@
+Exception #1297759968 in line 210 of /var/www/lux/Data/Temporary/Development/Cache/Code/Flow_Object_Classes/Neos_Flow_Mvc_Controller_Argument.php: Could not convert target type "AgzHack\Lux\Domain\Model\LightMarker", at property path "coordinate": Property "latitudeLongitudeString" was not found in target object of type "AgzHack\Geo\Domain\Model\Coordinate".
+
+11 Neos\Flow\Property\PropertyMapper_Original::convert(array|1|, "AgzHack\Lux\Domain\Model\LightMarker", Neos\Flow\Mvc\Controller\MvcPropertyMappingConfiguration)
+10 Neos\Flow\Mvc\Controller\Argument_Original::setValue(array|1|)
+9 Neos\Flow\Mvc\Controller\AbstractController::mapRequestArgumentsToControllerArguments()
+8 Neos\Flow\Mvc\Controller\ActionController_Original::processRequest(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+7 Neos\Flow\Mvc\Dispatcher_Original::initiateDispatchLoop(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+6 Neos\Flow\Mvc\Dispatcher_Original::dispatch(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+5 Neos\Flow\Mvc\DispatchComponent_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+4 Neos\Flow\Http\Component\ComponentChain_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+3 Neos\Flow\Http\Component\ComponentChain_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+2 Neos\Flow\Http\RequestHandler::handleRequest()
+1 Neos\Flow\Core\Bootstrap::run()
+
+Previous exception: Exception #1297978366 in line 189 of /var/www/lux/Data/Temporary/Development/Cache/Code/Flow_Object_Classes/Neos_Flow_Property_PropertyMapper.php: Property "latitudeLongitudeString" was not found in target object of type "AgzHack\Geo\Domain\Model\Coordinate".
+
+14 Neos\Flow\Property\TypeConverter\PersistentObjectConverter_Original::getTypeOfChildProperty("AgzHack\Geo\Domain\Model\Coordinate", "latitudeLongitudeString", Neos\Flow\Mvc\Controller\MvcPropertyMappingConfiguration)
+13 Neos\Flow\Property\PropertyMapper_Original::doMapping(array|3|, "AgzHack\Geo\Domain\Model\Coordinate", Neos\Flow\Mvc\Controller\MvcPropertyMappingConfiguration, array|1|)
+12 Neos\Flow\Property\PropertyMapper_Original::doMapping(array|1|, "AgzHack\Lux\Domain\Model\LightMarker", Neos\Flow\Mvc\Controller\MvcPropertyMappingConfiguration, array|1|)
+11 Neos\Flow\Property\PropertyMapper_Original::convert(array|1|, "AgzHack\Lux\Domain\Model\LightMarker", Neos\Flow\Mvc\Controller\MvcPropertyMappingConfiguration)
+10 Neos\Flow\Mvc\Controller\Argument_Original::setValue(array|1|)
+9 Neos\Flow\Mvc\Controller\AbstractController::mapRequestArgumentsToControllerArguments()
+8 Neos\Flow\Mvc\Controller\ActionController_Original::processRequest(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+7 Neos\Flow\Mvc\Dispatcher_Original::initiateDispatchLoop(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+6 Neos\Flow\Mvc\Dispatcher_Original::dispatch(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+5 Neos\Flow\Mvc\DispatchComponent_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+4 Neos\Flow\Http\Component\ComponentChain_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+3 Neos\Flow\Http\Component\ComponentChain_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+2 Neos\Flow\Http\RequestHandler::handleRequest()
+1 Neos\Flow\Core\Bootstrap::run()
+
+
+HTTP REQUEST:
+POST /light-markers HTTP/1.1
+Host: localhost:1003
+Connection: keep-alive
+Content-Length: 198
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+Origin: chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop
+Postman-Token: 2e2ecf93-2a64-9f23-78e4-2ed3ee489471
+Content-Type: application/json
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cache-Control: no-cache
+
+{ "lightMarker": {
+        "coordinate": {
+            "latitude": 12.2440693,
+            "latitudeLongitudeString": "12.2440693,-39.0022769",
+            "longitude": -39.0022769
+        }
+    }
+}
+
+HTTP RESPONSE:
+[response was empty]
+
+PHP PROCESS:
+Inode: 3952909
+PID: 13
+UID: 1000
+GID: 1000
+User: 
+
+    [array] => 
+        previousException:
+        [string] => Exception #1297978366 in line 189 of /var/www/lux/Data/Temporary/Development/Cache/Code/Flow_Object_Classes/Neos_Flow_Property_PropertyMapper.php: Property "latitudeLongitudeString" was not found in target object of type "AgzHack\Geo\Domain\Model\Coordinate".
+

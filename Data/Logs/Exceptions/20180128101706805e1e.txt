@@ -1,0 +1,26 @@
+Exception #1355480641 in line 312 of /var/www/lux/Packages/Framework/Neos.Flow/Classes/Core/Booting/Scripts.php: Syntax error: "(" expected in "*", defined in Policy privilege "AgzHack.Api:LightMarkersController.allAction"
+
+  Type: Neos\Flow\Aop\Exception\InvalidPointcutExpressionException
+  Code: 1169144299
+  File: Packages/Framework/Neos.Flow/Classes/Aop/Pointcut/PointcutExpressionParser.
+        php
+  Line: 268
+
+Open Data/Logs/Exceptions/2018012810170612d254.txt for a full stack trace.
+
+12 Neos\Flow\Core\Booting\Scripts::executeCommand("neos.flow:core:compile", array|17|)
+11 Neos\Flow\Core\Booting\Scripts::initializeProxyClasses(Neos\Flow\Core\Bootstrap)
+10 call_user_func(array|2|, Neos\Flow\Core\Bootstrap)
+9 Neos\Flow\Core\Booting\Step::__invoke(Neos\Flow\Core\Bootstrap)
+8 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+7 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+6 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+5 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+4 Neos\Flow\Core\Booting\Sequence::invoke(Neos\Flow\Core\Bootstrap)
+3 Neos\Flow\Http\RequestHandler::boot()
+2 Neos\Flow\Http\RequestHandler::handleRequest()
+1 Neos\Flow\Core\Bootstrap::run()
+
+
+    [array] => 
+

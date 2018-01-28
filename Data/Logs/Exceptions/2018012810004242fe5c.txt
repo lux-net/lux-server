@@ -1,0 +1,53 @@
+Exception in line 103 of /var/www/lux/Data/Temporary/Development/Cache/Code/Flow_Object_Classes/Neos_Flow_Security_Authentication_AuthenticationProviderManager.php: Call to a member function setAuthenticationEntryPoint() on null
+
+25 Neos\Flow\Security\Authentication\AuthenticationProviderManager_Original::buildProvidersAndTokensFromConfiguration(array|1|)
+24 Neos\Flow\Security\Authentication\AuthenticationProviderManager_Original::injectSettings(array|17|)
+23 Neos\Flow\Security\Authentication\AuthenticationProviderManager::Flow_Proxy_injectProperties()
+22 Neos\Flow\Security\Authentication\AuthenticationProviderManager::__construct()
+21 Neos\Utility\ObjectAccess::instantiateClass("Neos\Flow\Security\Authentication\AuthenticationProviderManager", array|0|)
+20 Neos\Flow\ObjectManagement\ObjectManager::instantiateClass("Neos\Flow\Security\Authentication\AuthenticationProviderManager", array|0|)
+19 Neos\Flow\ObjectManagement\ObjectManager::get("Neos\Flow\Security\Authentication\AuthenticationManagerInterface")
+18 Neos\Flow\Security\Context::Flow_Proxy_injectProperties()
+17 Neos\Flow\Security\Context::__construct()
+16 Neos\Utility\ObjectAccess::instantiateClass("Neos\Flow\Security\Context", array|0|)
+15 Neos\Flow\ObjectManagement\ObjectManager::instantiateClass("Neos\Flow\Security\Context", array|0|)
+14 Neos\Flow\ObjectManagement\ObjectManager::get("Neos\Flow\Security\Context")
+13 Neos\FluidAdaptor\Core\Widget\AjaxWidgetComponent::Flow_Proxy_injectProperties()
+12 Neos\FluidAdaptor\Core\Widget\AjaxWidgetComponent::__construct(array|0|)
+11 Neos\Utility\ObjectAccess::instantiateClass("Neos\FluidAdaptor\Core\Widget\AjaxWidgetComponent", array|1|)
+10 Neos\Flow\ObjectManagement\ObjectManager::instantiateClass("Neos\FluidAdaptor\Core\Widget\AjaxWidgetComponent", array|1|)
+9 Neos\Flow\ObjectManagement\ObjectManager::get("Neos\FluidAdaptor\Core\Widget\AjaxWidgetComponent", array|0|)
+8 Neos\Flow\Http\Component\ComponentChainFactory_Original::create(array|3|)
+7 Neos\Flow\Http\Component\ComponentChainFactory_Original::create(array|3|)
+6 call_user_func_array(array|2|, array|1|)
+5 Neos\Flow\ObjectManagement\ObjectManager::buildObjectByFactory("Neos\Flow\Http\Component\ComponentChain")
+4 Neos\Flow\ObjectManagement\ObjectManager::get("Neos\Flow\Http\Component\ComponentChain")
+3 Neos\Flow\Http\RequestHandler::resolveDependencies()
+2 Neos\Flow\Http\RequestHandler::handleRequest()
+1 Neos\Flow\Core\Bootstrap::run()
+
+
+HTTP REQUEST:
+GET /users HTTP/1.1
+Host: localhost:1003
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+Upgrade-Insecure-Requests: 1
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+
+
+
+HTTP RESPONSE:
+[response was empty]
+
+PHP PROCESS:
+Inode: 3952909
+PID: 186
+UID: 1000
+GID: 1000
+User: 
+
+    [array] => 
+

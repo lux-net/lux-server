@@ -1,0 +1,53 @@
+Exception #1318414040 in line 532 of /home/ernesto/repos/lux-server/Packages/Framework/Neos.Flow/Classes/Configuration/ConfigurationManager.php: The SubRoute Package "TYPO3.Flow" referenced in Route "Flow" is not available.
+
+24 Neos\Flow\Configuration\ConfigurationManager::mergeRoutesWithSubRoutes(array|3|)
+23 Neos\Flow\Configuration\ConfigurationManager::loadConfiguration("Routes", array|71|)
+22 Neos\Flow\Configuration\ConfigurationManager::saveConfigurationCache()
+21 Neos\Flow\Configuration\ConfigurationManager::refreshConfiguration()
+20 Neos\Flow\Cache\CacheManager::flushConfigurationCachesByChangedFiles(array|1|)
+19 Neos\Flow\Cache\CacheManager::flushSystemCachesByChangedFiles("Flow_ConfigurationFiles", array|1|, "Neos\Flow\Monitor\FileMonitor::filesHaveChanged", "Neos\Flow\Monitor\FileMonitor::filesHaveChanged", "Neos\Flow\Monitor\FileMonitor::filesHaveChanged")
+18 call_user_func_array(array|2|, array|5|)
+17 Neos\Flow\SignalSlot\Dispatcher::dispatch("Neos\Flow\Monitor\FileMonitor", "filesHaveChanged", array|5|)
+16 Neos\Flow\Monitor\FileMonitor_Original::emitFilesHaveChanged("Flow_ConfigurationFiles", array|1|)
+15 Neos\Flow\Monitor\FileMonitor_Original::detectChanges()
+14 Neos\Flow\Core\Booting\Scripts::initializeSystemFileMonitor(Neos\Flow\Core\Bootstrap)
+13 call_user_func(array|2|, Neos\Flow\Core\Bootstrap)
+12 Neos\Flow\Core\Booting\Step::__invoke(Neos\Flow\Core\Bootstrap)
+11 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+10 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+9 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+8 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+7 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+6 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+5 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+4 Neos\Flow\Core\Booting\Sequence::invoke(Neos\Flow\Core\Bootstrap)
+3 Neos\Flow\Http\RequestHandler::boot()
+2 Neos\Flow\Http\RequestHandler::handleRequest()
+1 Neos\Flow\Core\Bootstrap::run()
+
+
+HTTP REQUEST:
+GET /flow/lights HTTP/1.1
+Host: localhost:8001
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+Upgrade-Insecure-Requests: 1
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cache-Control: max-age=0
+
+
+
+HTTP RESPONSE:
+[response was empty]
+
+PHP PROCESS:
+Inode: 3953246
+PID: 9289
+UID: 1000
+GID: 1000
+User: ernesto
+
+    [array] => 
+

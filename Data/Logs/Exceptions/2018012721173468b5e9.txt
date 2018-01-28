@@ -1,0 +1,35 @@
+Exception in line 41 of /home/ernesto/repos/lux-server/Packages/Libraries/doctrine/common/lib/Doctrine/Common/Persistence/Mapping/RuntimeReflectionService.php: Class 'AgzHack\Lux\Domain\Model\LightMarkerCluster' does not exist
+
+29 Doctrine\Common\Persistence\Mapping\MappingException::nonExistingClass("AgzHack\Lux\Domain\Model\LightMarkerCluster")
+28 Doctrine\Common\Persistence\Mapping\RuntimeReflectionService::getParentClasses("AgzHack\Lux\Domain\Model\LightMarkerCluster")
+27 Doctrine\Common\Persistence\Mapping\AbstractClassMetadataFactory::getParentClasses("AgzHack\Lux\Domain\Model\LightMarkerCluster")
+26 Doctrine\Common\Persistence\Mapping\AbstractClassMetadataFactory::loadMetadata("AgzHack\Lux\Domain\Model\LightMarkerCluster")
+25 Doctrine\ORM\Mapping\ClassMetadataFactory::loadMetadata("AgzHack\Lux\Domain\Model\LightMarkerCluster")
+24 Doctrine\Common\Persistence\Mapping\AbstractClassMetadataFactory::getMetadataFor("AgzHack\Lux\Domain\Model\LightMarkerCluster")
+23 Doctrine\Common\Persistence\Mapping\AbstractClassMetadataFactory::getAllMetadata()
+22 Neos\Flow\Persistence\Doctrine\Service_Original::compileProxies()
+21 call_user_func_array(array|2|, array|0|)
+20 Neos\Flow\ObjectManagement\DependencyInjection\DependencyProxy::__call("compileProxies", array|0|)
+19 Neos\Flow\Command\DoctrineCommandController_Original::compileProxiesCommand()
+18 call_user_func_array(array|2|, array|0|)
+17 Neos\Flow\Cli\CommandController_Original::callCommandMethod()
+16 Neos\Flow\Cli\CommandController_Original::processRequest(Neos\Flow\Cli\Request, Neos\Flow\Cli\Response)
+15 Neos\Flow\Mvc\Dispatcher_Original::initiateDispatchLoop(Neos\Flow\Cli\Request, Neos\Flow\Cli\Response)
+14 Neos\Flow\Mvc\Dispatcher_Original::dispatch(Neos\Flow\Cli\Request, Neos\Flow\Cli\Response)
+13 Neos\Flow\Cli\CommandRequestHandler::Neos\Flow\Cli\{closure}()
+12 Closure::__invoke()
+11 Neos\Flow\Security\Context_Original::withoutAuthorizationChecks(Closure)
+10 Neos\Flow\Security\Context::withoutAuthorizationChecks(Closure)
+9 call_user_func_array(array|2|, array|1|)
+8 Neos\Flow\Security\Context::Flow_Aop_Proxy_invokeJoinPoint(Neos\Flow\Aop\JoinPoint)
+7 Neos\Flow\Aop\Advice\AdviceChain::proceed(Neos\Flow\Aop\JoinPoint)
+6 Neos\Flow\Session\Aspect\LazyLoadingAspect_Original::callMethodOnOriginalSessionObject(Neos\Flow\Aop\JoinPoint)
+5 Neos\Flow\Aop\Advice\AroundAdvice::invoke(Neos\Flow\Aop\JoinPoint)
+4 Neos\Flow\Aop\Advice\AdviceChain::proceed(Neos\Flow\Aop\JoinPoint)
+3 Neos\Flow\Security\Context::withoutAuthorizationChecks(Closure)
+2 Neos\Flow\Cli\CommandRequestHandler::handleRequest()
+1 Neos\Flow\Core\Bootstrap::run()
+
+
+    [array] => 
+

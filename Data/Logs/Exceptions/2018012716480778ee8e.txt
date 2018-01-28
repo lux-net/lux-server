@@ -1,0 +1,42 @@
+Exception #1225709595 in line 554 of /home/ernesto/repos/lux-server/Packages/Libraries/typo3fluid/fluid/src/View/TemplatePaths.php: Template could not be loaded. I tried "resource://AgzHack.Api/Private/Templates/Light/List.html"
+
+13 Neos\FluidAdaptor\View\TemplatePaths_Original::resolveTemplateFileForControllerAndActionAndFormat("Light", "List", "html")
+12 TYPO3Fluid\Fluid\View\TemplatePaths::getTemplateIdentifier("Light", "list")
+11 TYPO3Fluid\Fluid\View\AbstractTemplateView::getCurrentParsedTemplate()
+10 TYPO3Fluid\Fluid\View\AbstractTemplateView::render()
+9 Neos\Flow\Mvc\Controller\ActionController_Original::callActionMethod()
+8 Neos\Flow\Mvc\Controller\ActionController_Original::processRequest(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+7 Neos\Flow\Mvc\Dispatcher_Original::initiateDispatchLoop(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+6 Neos\Flow\Mvc\Dispatcher_Original::dispatch(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+5 Neos\Flow\Mvc\DispatchComponent_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+4 Neos\Flow\Http\Component\ComponentChain_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+3 Neos\Flow\Http\Component\ComponentChain_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+2 Neos\Flow\Http\RequestHandler::handleRequest()
+1 Neos\Flow\Core\Bootstrap::run()
+
+
+HTTP REQUEST:
+GET /lights HTTP/1.1
+Host: localhost:8001
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+Upgrade-Insecure-Requests: 1
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cache-Control: max-age=0
+
+
+
+HTTP RESPONSE:
+[response was empty]
+
+PHP PROCESS:
+Inode: 3953246
+PID: 9289
+UID: 1000
+GID: 1000
+User: ernesto
+
+    [array] => 
+

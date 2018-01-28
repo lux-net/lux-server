@@ -1,0 +1,75 @@
+Exception #1401795388 in line 101 of /var/www/lux/Data/Temporary/Development/Cache/Code/Flow_Object_Classes/Neos_Flow_Security_Policy_PolicyService.php: No "matcher" configured for privilegeTarget "matcher"
+
+45 Neos\Flow\Security\Policy\PolicyService_Original::initializePrivilegeTargets()
+44 Neos\Flow\Security\Policy\PolicyService_Original::initialize()
+43 Neos\Flow\Security\Policy\PolicyService_Original::hasRole("Neos.Flow:Everybody")
+42 Neos\Flow\Security\Policy\PolicyService_Original::getRole("Neos.Flow:Everybody")
+41 call_user_func_array(array|2|, array|1|)
+40 Neos\Flow\ObjectManagement\DependencyInjection\DependencyProxy::__call("getRole", array|1|)
+39 Neos\Flow\Security\Context_Original::getRoles()
+38 Neos\Flow\Security\Context::getRoles()
+37 call_user_func_array(array|2|, array|0|)
+36 Neos\Flow\Security\Context::Flow_Aop_Proxy_invokeJoinPoint(Neos\Flow\Aop\JoinPoint)
+35 Neos\Flow\Aop\Advice\AdviceChain::proceed(Neos\Flow\Aop\JoinPoint)
+34 Neos\Flow\Session\Aspect\LazyLoadingAspect_Original::callMethodOnOriginalSessionObject(Neos\Flow\Aop\JoinPoint)
+33 Neos\Flow\Aop\Advice\AroundAdvice::invoke(Neos\Flow\Aop\JoinPoint)
+32 Neos\Flow\Aop\Advice\AdviceChain::proceed(Neos\Flow\Aop\JoinPoint)
+31 Neos\Flow\Security\Context::getRoles()
+30 Neos\Flow\Security\Context_Original::refreshRoles()
+29 Neos\Flow\Security\Context::refreshRoles()
+28 call_user_func_array(array|2|, array|0|)
+27 Neos\Flow\Security\Context::Flow_Aop_Proxy_invokeJoinPoint(Neos\Flow\Aop\JoinPoint)
+26 Neos\Flow\Aop\Advice\AdviceChain::proceed(Neos\Flow\Aop\JoinPoint)
+25 Neos\Flow\Session\Aspect\LazyLoadingAspect_Original::callMethodOnOriginalSessionObject(Neos\Flow\Aop\JoinPoint)
+24 Neos\Flow\Aop\Advice\AroundAdvice::invoke(Neos\Flow\Aop\JoinPoint)
+23 Neos\Flow\Aop\Advice\AdviceChain::proceed(Neos\Flow\Aop\JoinPoint)
+22 Neos\Flow\Security\Context::refreshRoles()
+21 Neos\Flow\Security\Authentication\AuthenticationProviderManager_Original::authenticate()
+20 Neos\Flow\Security\Authentication\AuthenticationProviderManager::authenticate()
+19 call_user_func_array(array|2|, array|0|)
+18 Neos\Flow\Security\Authentication\AuthenticationProviderManager::Flow_Aop_Proxy_invokeJoinPoint(Neos\Flow\Aop\JoinPoint)
+17 Neos\Flow\Security\Authentication\AuthenticationProviderManager::authenticate()
+16 Neos\Flow\Security\Authorization\Interceptor\PolicyEnforcement_Original::invoke()
+15 Neos\Flow\Security\Aspect\PolicyEnforcementAspect_Original::enforcePolicy(Neos\Flow\Aop\JoinPoint)
+14 Neos\Flow\Aop\Advice\AroundAdvice::invoke(Neos\Flow\Aop\JoinPoint)
+13 Neos\Flow\Aop\Advice\AdviceChain::proceed(Neos\Flow\Aop\JoinPoint)
+12 AgzHack\Api\Controller\LightMarkersController::__construct()
+11 Neos\Utility\ObjectAccess::instantiateClass("AgzHack\Api\Controller\LightMarkersController", array|0|)
+10 Neos\Flow\ObjectManagement\ObjectManager::instantiateClass("AgzHack\Api\Controller\LightMarkersController", array|0|)
+9 Neos\Flow\ObjectManagement\ObjectManager::get("AgzHack\Api\Controller\LightMarkersController")
+8 Neos\Flow\Mvc\Dispatcher_Original::resolveController(Neos\Flow\Mvc\ActionRequest)
+7 Neos\Flow\Mvc\Dispatcher_Original::initiateDispatchLoop(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+6 Neos\Flow\Mvc\Dispatcher_Original::dispatch(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+5 Neos\Flow\Mvc\DispatchComponent_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+4 Neos\Flow\Http\Component\ComponentChain_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+3 Neos\Flow\Http\Component\ComponentChain_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+2 Neos\Flow\Http\RequestHandler::handleRequest()
+1 Neos\Flow\Core\Bootstrap::run()
+
+
+HTTP REQUEST:
+GET /light-markers?northEast[latitude]=1&northEast[longitude]=2&southWest[latitude]=2&southWest[longitude]=5?key=ae HTTP/1.1
+Host: localhost:1003
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+Key: 809016095965235
+Postman-Token: 180f1c04-d250-01c6-a2cc-9b2c80a0a8a1
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cache-Control: no-cache
+
+
+
+HTTP RESPONSE:
+[response was empty]
+
+PHP PROCESS:
+Inode: 3952909
+PID: 12
+UID: 1000
+GID: 1000
+User: 
+
+    [array] => 
+

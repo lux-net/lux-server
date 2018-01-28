@@ -1,0 +1,129 @@
+Exception in line 483 of /var/www/lux/Packages/Libraries/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php: [Semantical Error] line 0, col 76 near 'coordinate0 WHERE': Error: Class AgzHack\Lux\Domain\Model\LightMarker has no association named coordinate
+
+47 Doctrine\ORM\Query\QueryException::semanticalError("line 0, col 76 near 'coordinate0 WHERE': Error: Cl…el\LightMarker has no association named coordinate", Doctrine\ORM\Query\QueryException)
+46 Doctrine\ORM\Query\Parser::semanticalError("line 0, col 76 near 'coordinate0 WHERE': Error: Cl…el\LightMarker has no association named coordinate")
+45 Doctrine\ORM\Query\Parser::JoinAssociationPathExpression()
+44 Doctrine\ORM\Query\Parser::JoinAssociationDeclaration()
+43 Doctrine\ORM\Query\Parser::Join()
+42 Doctrine\ORM\Query\Parser::IdentificationVariableDeclaration()
+41 Doctrine\ORM\Query\Parser::FromClause()
+40 Doctrine\ORM\Query\Parser::SelectStatement()
+39 Doctrine\ORM\Query\Parser::QueryLanguage()
+38 Doctrine\ORM\Query\Parser::getAST()
+37 Doctrine\ORM\Query\Parser::parse()
+36 Doctrine\ORM\Query::_parse()
+35 Doctrine\ORM\Query::_doExecute()
+34 Doctrine\ORM\AbstractQuery::executeIgnoreQueryCache(NULL, 1)
+33 Doctrine\ORM\AbstractQuery::execute(NULL, 1)
+32 Doctrine\ORM\AbstractQuery::getResult()
+31 Neos\Flow\Persistence\Doctrine\Query_Original::getResult()
+30 Neos\Flow\Persistence\Doctrine\QueryResult_Original::initialize()
+29 Neos\Flow\Persistence\Doctrine\QueryResult_Original::rewind()
+28 Neos\Flow\Mvc\View\JsonView_Original::transformValue(Neos\Flow\Persistence\Doctrine\QueryResult, array|1|)
+27 Neos\Flow\Mvc\View\JsonView_Original::renderArray()
+26 Neos\Flow\Mvc\View\JsonView_Original::render()
+25 Neos\Flow\Mvc\Controller\ActionController_Original::callActionMethod()
+24 AgzHack\Api\Controller\LightMarkersController::callActionMethod()
+23 call_user_func_array(array|2|, array|0|)
+22 AgzHack\Api\Controller\LightMarkersController::Flow_Aop_Proxy_invokeJoinPoint(Neos\Flow\Aop\JoinPoint)
+21 Neos\Flow\Aop\Advice\AdviceChain::proceed(Neos\Flow\Aop\JoinPoint)
+20 Neos\Flow\Security\Aspect\PolicyEnforcementAspect_Original::enforcePolicy(Neos\Flow\Aop\JoinPoint)
+19 Neos\Flow\Aop\Advice\AroundAdvice::invoke(Neos\Flow\Aop\JoinPoint)
+18 Neos\Flow\Aop\Advice\AdviceChain::proceed(Neos\Flow\Aop\JoinPoint)
+17 AgzHack\Api\Controller\LightMarkersController::callActionMethod()
+16 Neos\Flow\Mvc\Controller\ActionController_Original::processRequest(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+15 AgzHack\Api\Controller\LightMarkersController::processRequest(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+14 call_user_func_array(array|2|, array|2|)
+13 AgzHack\Api\Controller\LightMarkersController::Flow_Aop_Proxy_invokeJoinPoint(Neos\Flow\Aop\JoinPoint)
+12 Neos\Flow\Aop\Advice\AdviceChain::proceed(Neos\Flow\Aop\JoinPoint)
+11 Neos\Flow\Security\Aspect\PolicyEnforcementAspect_Original::enforcePolicy(Neos\Flow\Aop\JoinPoint)
+10 Neos\Flow\Aop\Advice\AroundAdvice::invoke(Neos\Flow\Aop\JoinPoint)
+9 Neos\Flow\Aop\Advice\AdviceChain::proceed(Neos\Flow\Aop\JoinPoint)
+8 AgzHack\Api\Controller\LightMarkersController::processRequest(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+7 Neos\Flow\Mvc\Dispatcher_Original::initiateDispatchLoop(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+6 Neos\Flow\Mvc\Dispatcher_Original::dispatch(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+5 Neos\Flow\Mvc\DispatchComponent_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+4 Neos\Flow\Http\Component\ComponentChain_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+3 Neos\Flow\Http\Component\ComponentChain_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+2 Neos\Flow\Http\RequestHandler::handleRequest()
+1 Neos\Flow\Core\Bootstrap::run()
+
+Previous exception: Exception in line 483 of /var/www/lux/Packages/Libraries/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php: SELECT e FROM AgzHack\Lux\Domain\Model\LightMarker e LEFT JOIN e.coordinate coordinate0 WHERE coordinate0.latitude <= ?1 AND coordinate0.latitude >= ?2 AND coordinate0.longitude >= ?3 AND coordinate0.longitude <= ?4
+
+47 Doctrine\ORM\Query\QueryException::dqlError("SELECT e FROM AgzHack\Lux\Domain\Model\LightMarker…e0.longitude >= ?3 AND coordinate0.longitude <= ?4")
+46 Doctrine\ORM\Query\Parser::semanticalError("line 0, col 76 near 'coordinate0 WHERE': Error: Cl…el\LightMarker has no association named coordinate")
+45 Doctrine\ORM\Query\Parser::JoinAssociationPathExpression()
+44 Doctrine\ORM\Query\Parser::JoinAssociationDeclaration()
+43 Doctrine\ORM\Query\Parser::Join()
+42 Doctrine\ORM\Query\Parser::IdentificationVariableDeclaration()
+41 Doctrine\ORM\Query\Parser::FromClause()
+40 Doctrine\ORM\Query\Parser::SelectStatement()
+39 Doctrine\ORM\Query\Parser::QueryLanguage()
+38 Doctrine\ORM\Query\Parser::getAST()
+37 Doctrine\ORM\Query\Parser::parse()
+36 Doctrine\ORM\Query::_parse()
+35 Doctrine\ORM\Query::_doExecute()
+34 Doctrine\ORM\AbstractQuery::executeIgnoreQueryCache(NULL, 1)
+33 Doctrine\ORM\AbstractQuery::execute(NULL, 1)
+32 Doctrine\ORM\AbstractQuery::getResult()
+31 Neos\Flow\Persistence\Doctrine\Query_Original::getResult()
+30 Neos\Flow\Persistence\Doctrine\QueryResult_Original::initialize()
+29 Neos\Flow\Persistence\Doctrine\QueryResult_Original::rewind()
+28 Neos\Flow\Mvc\View\JsonView_Original::transformValue(Neos\Flow\Persistence\Doctrine\QueryResult, array|1|)
+27 Neos\Flow\Mvc\View\JsonView_Original::renderArray()
+26 Neos\Flow\Mvc\View\JsonView_Original::render()
+25 Neos\Flow\Mvc\Controller\ActionController_Original::callActionMethod()
+24 AgzHack\Api\Controller\LightMarkersController::callActionMethod()
+23 call_user_func_array(array|2|, array|0|)
+22 AgzHack\Api\Controller\LightMarkersController::Flow_Aop_Proxy_invokeJoinPoint(Neos\Flow\Aop\JoinPoint)
+21 Neos\Flow\Aop\Advice\AdviceChain::proceed(Neos\Flow\Aop\JoinPoint)
+20 Neos\Flow\Security\Aspect\PolicyEnforcementAspect_Original::enforcePolicy(Neos\Flow\Aop\JoinPoint)
+19 Neos\Flow\Aop\Advice\AroundAdvice::invoke(Neos\Flow\Aop\JoinPoint)
+18 Neos\Flow\Aop\Advice\AdviceChain::proceed(Neos\Flow\Aop\JoinPoint)
+17 AgzHack\Api\Controller\LightMarkersController::callActionMethod()
+16 Neos\Flow\Mvc\Controller\ActionController_Original::processRequest(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+15 AgzHack\Api\Controller\LightMarkersController::processRequest(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+14 call_user_func_array(array|2|, array|2|)
+13 AgzHack\Api\Controller\LightMarkersController::Flow_Aop_Proxy_invokeJoinPoint(Neos\Flow\Aop\JoinPoint)
+12 Neos\Flow\Aop\Advice\AdviceChain::proceed(Neos\Flow\Aop\JoinPoint)
+11 Neos\Flow\Security\Aspect\PolicyEnforcementAspect_Original::enforcePolicy(Neos\Flow\Aop\JoinPoint)
+10 Neos\Flow\Aop\Advice\AroundAdvice::invoke(Neos\Flow\Aop\JoinPoint)
+9 Neos\Flow\Aop\Advice\AdviceChain::proceed(Neos\Flow\Aop\JoinPoint)
+8 AgzHack\Api\Controller\LightMarkersController::processRequest(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+7 Neos\Flow\Mvc\Dispatcher_Original::initiateDispatchLoop(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+6 Neos\Flow\Mvc\Dispatcher_Original::dispatch(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+5 Neos\Flow\Mvc\DispatchComponent_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+4 Neos\Flow\Http\Component\ComponentChain_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+3 Neos\Flow\Http\Component\ComponentChain_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+2 Neos\Flow\Http\RequestHandler::handleRequest()
+1 Neos\Flow\Core\Bootstrap::run()
+
+
+HTTP REQUEST:
+GET /light-markers?northEast[latitude]=3211&northEast[longitude]=2321&southWest[latitude]=232&southWest[longitude]=532 HTTP/1.1
+Host: localhost:1003
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+Key: 809016095965235
+Postman-Token: 686a043d-61e5-c864-e3c9-9e692a50ab44
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cache-Control: no-cache
+
+
+
+HTTP RESPONSE:
+[response was empty]
+
+PHP PROCESS:
+Inode: 3952909
+PID: 186
+UID: 1000
+GID: 1000
+User: 
+
+    [array] => 
+        previousException:
+        [string] => Exception in line 483 of /var/www/lux/Packages/Libraries/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php: SELECT e FROM AgzHack\Lux\Domain\Model\LightMarker e LEFT JOIN e.coordinate coordinate0 WHERE coordinate0.latitude <= ?1 AND coordinate0.latitude >= ?2 AND coordinate0.longitude >= ?3 AND coordinate0.longitude <= ?4
+

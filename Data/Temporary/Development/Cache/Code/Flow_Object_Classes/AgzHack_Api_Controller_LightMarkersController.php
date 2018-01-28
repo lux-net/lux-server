@@ -1,0 +1,1742 @@
+<?php 
+
+namespace AgzHack\Api\Controller;
+
+use AgzHack\Auth\Service\AuthService;
+use AgzHack\Geo\Domain\Model\Coordinate;
+use AgzHack\Lux\Domain\Model\LightMarker;
+use AgzHack\Lux\Domain\Repository\LightMarkerRepository;
+use AgzHack\Lux\Service\LightMarkerService;
+use Neos\Flow\Mvc\Controller\RestController;
+use Neos\Flow\Mvc\View\JsonView;
+use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Property\TypeConverter\PersistentObjectConverter;
+
+class LightMarkersController_Original extends RestController
+{
+    protected $defaultViewObjectName = JsonView::class;
+
+    protected $resourceArgumentName = 'lightMarker';
+
+
+    /**
+     * @var LightMarkerRepository
+     * @Flow\Inject
+     */
+    protected $lightMarkerRepository;
+
+    /**
+     * @var LightMarkerService
+     * @Flow\Inject
+     */
+    protected $lightMarkerService;
+
+
+    public function initializeListAction()
+    {
+        foreach (['northEast', 'southWest'] as $arg) {
+            $this->arguments[$arg]->getPropertyMappingConfiguration()
+                ->setTypeConverterOption(
+                    PersistentObjectConverter::class,
+                    PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED,
+                    true
+                )->allowAllProperties();
+        }
+    }
+
+    /**
+     * @param Coordinate $northEast
+     * @param Coordinate $southWest
+     * @throws \Neos\Flow\Persistence\Exception\InvalidQueryException
+     */
+    public function listAction(Coordinate $northEast, Coordinate $southWest)
+    {
+        $this->view->setVariablesToRender(array('lightMarkers'));
+
+//        $lightMarkers = $this->lightMarkerRepository->findByBoundaries($northEast, $southWest);
+        $lightMarkers = $this->lightMarkerRepository->findAll();
+
+        $this->view->setConfiguration(
+            array(
+                'lightMarkers' => array(
+                    '_descendAll' => $this->getViewConfiguration()
+                )
+            )
+        );
+
+        $this->view->assign('lightMarkers', $lightMarkers);
+    }
+
+    /**
+     * @param Coordinate $coordsA
+     * @param Coordinate $coordsB
+     */
+    public function getKmlAction(Coordinate $coordsA, Coordinate $coordsB)
+    {
+    }
+
+    /**
+     * Allow modification of resources in updateAction()
+     *
+     * @return void
+     */
+    protected function initializeCreateAction()
+    {
+        $this->arguments[$this->resourceArgumentName]->getPropertyMappingConfiguration()
+            ->setTypeConverterOption(
+                PersistentObjectConverter::class,
+                PersistentObjectConverter::CONFIGURATION_CREATION_ALLOWED,
+                true
+            )->allowAllProperties();
+
+        $this->arguments[$this->resourceArgumentName]->getPropertyMappingConfiguration()
+            ->forProperty('coordinate')
+            ->allowAllProperties();
+    }
+
+
+    /**
+     * @param LightMarker $lightMarker
+     */
+    public function createAction(LightMarker $lightMarker)
+    {
+        $this->view->setVariablesToRender(array('lightMarker'));
+
+        try {
+            $discreteLightMarker = $this->lightMarkerService->addDiscreteMarker($lightMarker);
+
+            $this->view->setConfiguration(array(
+                'lightMarker' => $this->getViewConfiguration()
+            ));
+
+            $this->view->assign('lightMarker', $discreteLightMarker);
+        } catch (\Exception $e) {
+            $this->response->setStatus(500);
+            $this->view->assign('lightMarker', array('lightMarker' => $e->getMessage()));
+        }
+    }
+
+
+    /**
+     * @param LightMarker $lightMarker
+     */
+    public function deleteAction(LightMarker $lightMarker)
+    {
+        try {
+            $this->lightMarkerRepository->remove($lightMarker);
+        } catch (\Exception $e) {
+            $this->response->setStatus(500);
+            $this->view->assign('lightMarker', array('error' => $e->getMessage()));
+        }
+    }
+
+    private function getViewConfiguration()
+    {
+        return array(
+            '_exposeObjectIdentifier' => true,
+            '_exposedObjectIdentifierKey' => '__identity',
+            '_descend' => [
+                'coordinate' => [
+
+                ]
+            ]
+        );
+    }
+}
+
+#
+# Start of Flow generated Proxy code
+#
+namespace AgzHack\Api\Controller;
+
+use Doctrine\ORM\Mapping as ORM;
+use Neos\Flow\Annotations as Flow;
+
+/**
+ * 
+ */
+class LightMarkersController extends LightMarkersController_Original implements \Neos\Flow\ObjectManagement\Proxy\ProxyInterface {
+
+    use \Neos\Flow\Aop\AdvicesTrait, \Neos\Flow\ObjectManagement\Proxy\ObjectSerializationTrait, \Neos\Flow\ObjectManagement\DependencyInjection\PropertyInjectionTrait;
+
+    private $Flow_Aop_Proxy_targetMethodsAndGroupedAdvices = array();
+
+    private $Flow_Aop_Proxy_groupedAdviceChains = array();
+
+    private $Flow_Aop_Proxy_methodIsInAdviceMode = array();
+
+
+    /**
+     * Autogenerated Proxy Method
+     */
+    public function __construct()
+    {
+
+        $this->Flow_Aop_Proxy_buildMethodsAndAdvicesArray();
+
+        if (isset($this->Flow_Aop_Proxy_methodIsInAdviceMode['__construct'])) {
+
+        } else {
+            $this->Flow_Aop_Proxy_methodIsInAdviceMode['__construct'] = TRUE;
+            try {
+            
+                $methodArguments = [];
+
+                $adviceChains = $this->Flow_Aop_Proxy_getAdviceChains('__construct');
+                $adviceChain = $adviceChains['Neos\Flow\Aop\Advice\AroundAdvice'];
+                $adviceChain->rewind();
+                $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'AgzHack\Api\Controller\LightMarkersController', '__construct', $methodArguments, $adviceChain);
+                $result = $adviceChain->proceed($joinPoint);
+                $methodArguments = $joinPoint->getMethodArguments();
+
+            } catch (\Exception $exception) {
+                unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['__construct']);
+                throw $exception;
+            }
+            unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['__construct']);
+            return;
+        }
+        if ('AgzHack\Api\Controller\LightMarkersController' === get_class($this)) {
+            $this->Flow_Proxy_injectProperties();
+        }
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     */
+    protected function Flow_Aop_Proxy_buildMethodsAndAdvicesArray()
+    {
+        if (method_exists(get_parent_class(), 'Flow_Aop_Proxy_buildMethodsAndAdvicesArray') && is_callable('parent::Flow_Aop_Proxy_buildMethodsAndAdvicesArray')) parent::Flow_Aop_Proxy_buildMethodsAndAdvicesArray();
+
+        $objectManager = \Neos\Flow\Core\Bootstrap::$staticObjectManager;
+        $this->Flow_Aop_Proxy_targetMethodsAndGroupedAdvices = array(
+            '__construct' => array(
+                'Neos\Flow\Aop\Advice\AroundAdvice' => array(
+                    new \Neos\Flow\Aop\Advice\AroundAdvice('Neos\Flow\Security\Aspect\PolicyEnforcementAspect', 'enforcePolicy', $objectManager, NULL),
+                ),
+            ),
+            '__clone' => array(
+                'Neos\Flow\Aop\Advice\AroundAdvice' => array(
+                    new \Neos\Flow\Aop\Advice\AroundAdvice('Neos\Flow\Security\Aspect\PolicyEnforcementAspect', 'enforcePolicy', $objectManager, NULL),
+                ),
+            ),
+            'initializeListAction' => array(
+                'Neos\Flow\Aop\Advice\AroundAdvice' => array(
+                    new \Neos\Flow\Aop\Advice\AroundAdvice('Neos\Flow\Security\Aspect\PolicyEnforcementAspect', 'enforcePolicy', $objectManager, NULL),
+                ),
+            ),
+            'listAction' => array(
+                'Neos\Flow\Aop\Advice\AroundAdvice' => array(
+                    new \Neos\Flow\Aop\Advice\AroundAdvice('Neos\Flow\Security\Aspect\PolicyEnforcementAspect', 'enforcePolicy', $objectManager, NULL),
+                ),
+            ),
+            'getKmlAction' => array(
+                'Neos\Flow\Aop\Advice\AroundAdvice' => array(
+                    new \Neos\Flow\Aop\Advice\AroundAdvice('Neos\Flow\Security\Aspect\PolicyEnforcementAspect', 'enforcePolicy', $objectManager, NULL),
+                ),
+            ),
+            'initializeCreateAction' => array(
+                'Neos\Flow\Aop\Advice\AroundAdvice' => array(
+                    new \Neos\Flow\Aop\Advice\AroundAdvice('Neos\Flow\Security\Aspect\PolicyEnforcementAspect', 'enforcePolicy', $objectManager, NULL),
+                ),
+            ),
+            'createAction' => array(
+                'Neos\Flow\Aop\Advice\AroundAdvice' => array(
+                    new \Neos\Flow\Aop\Advice\AroundAdvice('Neos\Flow\Security\Aspect\PolicyEnforcementAspect', 'enforcePolicy', $objectManager, NULL),
+                ),
+            ),
+            'deleteAction' => array(
+                'Neos\Flow\Aop\Advice\AroundAdvice' => array(
+                    new \Neos\Flow\Aop\Advice\AroundAdvice('Neos\Flow\Security\Aspect\PolicyEnforcementAspect', 'enforcePolicy', $objectManager, NULL),
+                ),
+            ),
+            'getViewConfiguration' => array(
+                'Neos\Flow\Aop\Advice\AroundAdvice' => array(
+                    new \Neos\Flow\Aop\Advice\AroundAdvice('Neos\Flow\Security\Aspect\PolicyEnforcementAspect', 'enforcePolicy', $objectManager, NULL),
+                ),
+            ),
+            'resolveActionMethodName' => array(
+                'Neos\Flow\Aop\Advice\AroundAdvice' => array(
+                    new \Neos\Flow\Aop\Advice\AroundAdvice('Neos\Flow\Security\Aspect\PolicyEnforcementAspect', 'enforcePolicy', $objectManager, NULL),
+                ),
+            ),
+            'initializeUpdateAction' => array(
+                'Neos\Flow\Aop\Advice\AroundAdvice' => array(
+                    new \Neos\Flow\Aop\Advice\AroundAdvice('Neos\Flow\Security\Aspect\PolicyEnforcementAspect', 'enforcePolicy', $objectManager, NULL),
+                ),
+            ),
+            'redirectToUri' => array(
+                'Neos\Flow\Aop\Advice\AroundAdvice' => array(
+                    new \Neos\Flow\Aop\Advice\AroundAdvice('Neos\Flow\Security\Aspect\PolicyEnforcementAspect', 'enforcePolicy', $objectManager, NULL),
+                ),
+            ),
+            'injectSettings' => array(
+                'Neos\Flow\Aop\Advice\AroundAdvice' => array(
+                    new \Neos\Flow\Aop\Advice\AroundAdvice('Neos\Flow\Security\Aspect\PolicyEnforcementAspect', 'enforcePolicy', $objectManager, NULL),
+                ),
+            ),
+            'processRequest' => array(
+                'Neos\Flow\Aop\Advice\AroundAdvice' => array(
+                    new \Neos\Flow\Aop\Advice\AroundAdvice('Neos\Flow\Security\Aspect\PolicyEnforcementAspect', 'enforcePolicy', $objectManager, NULL),
+                ),
+            ),
+            'initializeActionMethodArguments' => array(
+                'Neos\Flow\Aop\Advice\AroundAdvice' => array(
+                    new \Neos\Flow\Aop\Advice\AroundAdvice('Neos\Flow\Security\Aspect\PolicyEnforcementAspect', 'enforcePolicy', $objectManager, NULL),
+                ),
+            ),
+            'getInformationNeededForInitializeActionMethodValidators' => array(
+                'Neos\Flow\Aop\Advice\AroundAdvice' => array(
+                    new \Neos\Flow\Aop\Advice\AroundAdvice('Neos\Flow\Security\Aspect\PolicyEnforcementAspect', 'enforcePolicy', $objectManager, NULL),
+                ),
+            ),
+            'initializeActionMethodValidators' => array(
+                'Neos\Flow\Aop\Advice\AroundAdvice' => array(
+                    new \Neos\Flow\Aop\Advice\AroundAdvice('Neos\Flow\Security\Aspect\PolicyEnforcementAspect', 'enforcePolicy', $objectManager, NULL),
+                ),
+            ),
+            'initializeAction' => array(
+                'Neos\Flow\Aop\Advice\AroundAdvice' => array(
+                    new \Neos\Flow\Aop\Advice\AroundAdvice('Neos\Flow\Security\Aspect\PolicyEnforcementAspect', 'enforcePolicy', $objectManager, NULL),
+                ),
+            ),
+            'callActionMethod' => array(
+                'Neos\Flow\Aop\Advice\AroundAdvice' => array(
+                    new \Neos\Flow\Aop\Advice\AroundAdvice('Neos\Flow\Security\Aspect\PolicyEnforcementAspect', 'enforcePolicy', $objectManager, NULL),
+                ),
+            ),
+            'resolveView' => array(
+                'Neos\Flow\Aop\Advice\AroundAdvice' => array(
+                    new \Neos\Flow\Aop\Advice\AroundAdvice('Neos\Flow\Security\Aspect\PolicyEnforcementAspect', 'enforcePolicy', $objectManager, NULL),
+                ),
+            ),
+            'resolveViewObjectName' => array(
+                'Neos\Flow\Aop\Advice\AroundAdvice' => array(
+                    new \Neos\Flow\Aop\Advice\AroundAdvice('Neos\Flow\Security\Aspect\PolicyEnforcementAspect', 'enforcePolicy', $objectManager, NULL),
+                ),
+            ),
+            'initializeView' => array(
+                'Neos\Flow\Aop\Advice\AroundAdvice' => array(
+                    new \Neos\Flow\Aop\Advice\AroundAdvice('Neos\Flow\Security\Aspect\PolicyEnforcementAspect', 'enforcePolicy', $objectManager, NULL),
+                ),
+            ),
+            'errorAction' => array(
+                'Neos\Flow\Aop\Advice\AroundAdvice' => array(
+                    new \Neos\Flow\Aop\Advice\AroundAdvice('Neos\Flow\Security\Aspect\PolicyEnforcementAspect', 'enforcePolicy', $objectManager, NULL),
+                ),
+            ),
+            'handleTargetNotFoundError' => array(
+                'Neos\Flow\Aop\Advice\AroundAdvice' => array(
+                    new \Neos\Flow\Aop\Advice\AroundAdvice('Neos\Flow\Security\Aspect\PolicyEnforcementAspect', 'enforcePolicy', $objectManager, NULL),
+                ),
+            ),
+            'addErrorFlashMessage' => array(
+                'Neos\Flow\Aop\Advice\AroundAdvice' => array(
+                    new \Neos\Flow\Aop\Advice\AroundAdvice('Neos\Flow\Security\Aspect\PolicyEnforcementAspect', 'enforcePolicy', $objectManager, NULL),
+                ),
+            ),
+            'forwardToReferringRequest' => array(
+                'Neos\Flow\Aop\Advice\AroundAdvice' => array(
+                    new \Neos\Flow\Aop\Advice\AroundAdvice('Neos\Flow\Security\Aspect\PolicyEnforcementAspect', 'enforcePolicy', $objectManager, NULL),
+                ),
+            ),
+            'getFlattenedValidationErrorMessage' => array(
+                'Neos\Flow\Aop\Advice\AroundAdvice' => array(
+                    new \Neos\Flow\Aop\Advice\AroundAdvice('Neos\Flow\Security\Aspect\PolicyEnforcementAspect', 'enforcePolicy', $objectManager, NULL),
+                ),
+            ),
+            'getErrorFlashMessage' => array(
+                'Neos\Flow\Aop\Advice\AroundAdvice' => array(
+                    new \Neos\Flow\Aop\Advice\AroundAdvice('Neos\Flow\Security\Aspect\PolicyEnforcementAspect', 'enforcePolicy', $objectManager, NULL),
+                ),
+            ),
+            'initializeController' => array(
+                'Neos\Flow\Aop\Advice\AroundAdvice' => array(
+                    new \Neos\Flow\Aop\Advice\AroundAdvice('Neos\Flow\Security\Aspect\PolicyEnforcementAspect', 'enforcePolicy', $objectManager, NULL),
+                ),
+            ),
+            'getControllerContext' => array(
+                'Neos\Flow\Aop\Advice\AroundAdvice' => array(
+                    new \Neos\Flow\Aop\Advice\AroundAdvice('Neos\Flow\Security\Aspect\PolicyEnforcementAspect', 'enforcePolicy', $objectManager, NULL),
+                ),
+            ),
+            'addFlashMessage' => array(
+                'Neos\Flow\Aop\Advice\AroundAdvice' => array(
+                    new \Neos\Flow\Aop\Advice\AroundAdvice('Neos\Flow\Security\Aspect\PolicyEnforcementAspect', 'enforcePolicy', $objectManager, NULL),
+                ),
+            ),
+            'forward' => array(
+                'Neos\Flow\Aop\Advice\AroundAdvice' => array(
+                    new \Neos\Flow\Aop\Advice\AroundAdvice('Neos\Flow\Security\Aspect\PolicyEnforcementAspect', 'enforcePolicy', $objectManager, NULL),
+                ),
+            ),
+            'forwardToRequest' => array(
+                'Neos\Flow\Aop\Advice\AroundAdvice' => array(
+                    new \Neos\Flow\Aop\Advice\AroundAdvice('Neos\Flow\Security\Aspect\PolicyEnforcementAspect', 'enforcePolicy', $objectManager, NULL),
+                ),
+            ),
+            'redirect' => array(
+                'Neos\Flow\Aop\Advice\AroundAdvice' => array(
+                    new \Neos\Flow\Aop\Advice\AroundAdvice('Neos\Flow\Security\Aspect\PolicyEnforcementAspect', 'enforcePolicy', $objectManager, NULL),
+                ),
+            ),
+            'redirectToRequest' => array(
+                'Neos\Flow\Aop\Advice\AroundAdvice' => array(
+                    new \Neos\Flow\Aop\Advice\AroundAdvice('Neos\Flow\Security\Aspect\PolicyEnforcementAspect', 'enforcePolicy', $objectManager, NULL),
+                ),
+            ),
+            'throwStatus' => array(
+                'Neos\Flow\Aop\Advice\AroundAdvice' => array(
+                    new \Neos\Flow\Aop\Advice\AroundAdvice('Neos\Flow\Security\Aspect\PolicyEnforcementAspect', 'enforcePolicy', $objectManager, NULL),
+                ),
+            ),
+            'mapRequestArgumentsToControllerArguments' => array(
+                'Neos\Flow\Aop\Advice\AroundAdvice' => array(
+                    new \Neos\Flow\Aop\Advice\AroundAdvice('Neos\Flow\Security\Aspect\PolicyEnforcementAspect', 'enforcePolicy', $objectManager, NULL),
+                ),
+            ),
+        );
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     */
+    public function __wakeup()
+    {
+
+        $this->Flow_Aop_Proxy_buildMethodsAndAdvicesArray();
+
+        $this->Flow_setRelatedEntities();
+        $this->Flow_Proxy_injectProperties();
+            $result = NULL;
+        if (method_exists(get_parent_class(), '__wakeup') && is_callable('parent::__wakeup')) parent::__wakeup();
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     */
+    public function __clone()
+    {
+
+        $this->Flow_Aop_Proxy_buildMethodsAndAdvicesArray();
+
+        if (isset($this->Flow_Aop_Proxy_methodIsInAdviceMode['__clone'])) {
+            $result = NULL;
+
+        } else {
+            $this->Flow_Aop_Proxy_methodIsInAdviceMode['__clone'] = TRUE;
+            try {
+            
+                $methodArguments = [];
+
+                $adviceChains = $this->Flow_Aop_Proxy_getAdviceChains('__clone');
+                $adviceChain = $adviceChains['Neos\Flow\Aop\Advice\AroundAdvice'];
+                $adviceChain->rewind();
+                $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'AgzHack\Api\Controller\LightMarkersController', '__clone', $methodArguments, $adviceChain);
+                $result = $adviceChain->proceed($joinPoint);
+                $methodArguments = $joinPoint->getMethodArguments();
+
+            } catch (\Exception $exception) {
+                unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['__clone']);
+                throw $exception;
+            }
+            unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['__clone']);
+        }
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     */
+    public function initializeListAction()
+    {
+
+        if (isset($this->Flow_Aop_Proxy_methodIsInAdviceMode['initializeListAction'])) {
+            $result = parent::initializeListAction();
+
+        } else {
+            $this->Flow_Aop_Proxy_methodIsInAdviceMode['initializeListAction'] = TRUE;
+            try {
+            
+                $methodArguments = [];
+
+                $adviceChains = $this->Flow_Aop_Proxy_getAdviceChains('initializeListAction');
+                $adviceChain = $adviceChains['Neos\Flow\Aop\Advice\AroundAdvice'];
+                $adviceChain->rewind();
+                $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'AgzHack\Api\Controller\LightMarkersController', 'initializeListAction', $methodArguments, $adviceChain);
+                $result = $adviceChain->proceed($joinPoint);
+                $methodArguments = $joinPoint->getMethodArguments();
+
+            } catch (\Exception $exception) {
+                unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['initializeListAction']);
+                throw $exception;
+            }
+            unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['initializeListAction']);
+        }
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     * @param Coordinate $northEast
+     * @param Coordinate $southWest
+     * @throws \Neos\Flow\Persistence\Exception\InvalidQueryException
+     */
+    public function listAction(\AgzHack\Geo\Domain\Model\Coordinate $northEast, \AgzHack\Geo\Domain\Model\Coordinate $southWest)
+    {
+
+        if (isset($this->Flow_Aop_Proxy_methodIsInAdviceMode['listAction'])) {
+            $result = parent::listAction($northEast, $southWest);
+
+        } else {
+            $this->Flow_Aop_Proxy_methodIsInAdviceMode['listAction'] = TRUE;
+            try {
+            
+                $methodArguments = [];
+
+                $methodArguments['northEast'] = $northEast;
+                $methodArguments['southWest'] = $southWest;
+            
+                $adviceChains = $this->Flow_Aop_Proxy_getAdviceChains('listAction');
+                $adviceChain = $adviceChains['Neos\Flow\Aop\Advice\AroundAdvice'];
+                $adviceChain->rewind();
+                $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'AgzHack\Api\Controller\LightMarkersController', 'listAction', $methodArguments, $adviceChain);
+                $result = $adviceChain->proceed($joinPoint);
+                $methodArguments = $joinPoint->getMethodArguments();
+
+            } catch (\Exception $exception) {
+                unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['listAction']);
+                throw $exception;
+            }
+            unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['listAction']);
+        }
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     * @param Coordinate $coordsA
+     * @param Coordinate $coordsB
+     */
+    public function getKmlAction(\AgzHack\Geo\Domain\Model\Coordinate $coordsA, \AgzHack\Geo\Domain\Model\Coordinate $coordsB)
+    {
+
+        if (isset($this->Flow_Aop_Proxy_methodIsInAdviceMode['getKmlAction'])) {
+            $result = parent::getKmlAction($coordsA, $coordsB);
+
+        } else {
+            $this->Flow_Aop_Proxy_methodIsInAdviceMode['getKmlAction'] = TRUE;
+            try {
+            
+                $methodArguments = [];
+
+                $methodArguments['coordsA'] = $coordsA;
+                $methodArguments['coordsB'] = $coordsB;
+            
+                $adviceChains = $this->Flow_Aop_Proxy_getAdviceChains('getKmlAction');
+                $adviceChain = $adviceChains['Neos\Flow\Aop\Advice\AroundAdvice'];
+                $adviceChain->rewind();
+                $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'AgzHack\Api\Controller\LightMarkersController', 'getKmlAction', $methodArguments, $adviceChain);
+                $result = $adviceChain->proceed($joinPoint);
+                $methodArguments = $joinPoint->getMethodArguments();
+
+            } catch (\Exception $exception) {
+                unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['getKmlAction']);
+                throw $exception;
+            }
+            unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['getKmlAction']);
+        }
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     * @return void
+     */
+    protected function initializeCreateAction()
+    {
+
+        if (isset($this->Flow_Aop_Proxy_methodIsInAdviceMode['initializeCreateAction'])) {
+            $result = parent::initializeCreateAction();
+
+        } else {
+            $this->Flow_Aop_Proxy_methodIsInAdviceMode['initializeCreateAction'] = TRUE;
+            try {
+            
+                $methodArguments = [];
+
+                $adviceChains = $this->Flow_Aop_Proxy_getAdviceChains('initializeCreateAction');
+                $adviceChain = $adviceChains['Neos\Flow\Aop\Advice\AroundAdvice'];
+                $adviceChain->rewind();
+                $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'AgzHack\Api\Controller\LightMarkersController', 'initializeCreateAction', $methodArguments, $adviceChain);
+                $result = $adviceChain->proceed($joinPoint);
+                $methodArguments = $joinPoint->getMethodArguments();
+
+            } catch (\Exception $exception) {
+                unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['initializeCreateAction']);
+                throw $exception;
+            }
+            unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['initializeCreateAction']);
+        }
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     * @param LightMarker $lightMarker
+     */
+    public function createAction(\AgzHack\Lux\Domain\Model\LightMarker $lightMarker)
+    {
+
+        if (isset($this->Flow_Aop_Proxy_methodIsInAdviceMode['createAction'])) {
+            $result = parent::createAction($lightMarker);
+
+        } else {
+            $this->Flow_Aop_Proxy_methodIsInAdviceMode['createAction'] = TRUE;
+            try {
+            
+                $methodArguments = [];
+
+                $methodArguments['lightMarker'] = $lightMarker;
+            
+                $adviceChains = $this->Flow_Aop_Proxy_getAdviceChains('createAction');
+                $adviceChain = $adviceChains['Neos\Flow\Aop\Advice\AroundAdvice'];
+                $adviceChain->rewind();
+                $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'AgzHack\Api\Controller\LightMarkersController', 'createAction', $methodArguments, $adviceChain);
+                $result = $adviceChain->proceed($joinPoint);
+                $methodArguments = $joinPoint->getMethodArguments();
+
+            } catch (\Exception $exception) {
+                unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['createAction']);
+                throw $exception;
+            }
+            unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['createAction']);
+        }
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     * @param LightMarker $lightMarker
+     */
+    public function deleteAction(\AgzHack\Lux\Domain\Model\LightMarker $lightMarker)
+    {
+
+        if (isset($this->Flow_Aop_Proxy_methodIsInAdviceMode['deleteAction'])) {
+            $result = parent::deleteAction($lightMarker);
+
+        } else {
+            $this->Flow_Aop_Proxy_methodIsInAdviceMode['deleteAction'] = TRUE;
+            try {
+            
+                $methodArguments = [];
+
+                $methodArguments['lightMarker'] = $lightMarker;
+            
+                $adviceChains = $this->Flow_Aop_Proxy_getAdviceChains('deleteAction');
+                $adviceChain = $adviceChains['Neos\Flow\Aop\Advice\AroundAdvice'];
+                $adviceChain->rewind();
+                $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'AgzHack\Api\Controller\LightMarkersController', 'deleteAction', $methodArguments, $adviceChain);
+                $result = $adviceChain->proceed($joinPoint);
+                $methodArguments = $joinPoint->getMethodArguments();
+
+            } catch (\Exception $exception) {
+                unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['deleteAction']);
+                throw $exception;
+            }
+            unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['deleteAction']);
+        }
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     */
+    private function getViewConfiguration()
+    {
+
+        if (isset($this->Flow_Aop_Proxy_methodIsInAdviceMode['getViewConfiguration'])) {
+            $result = parent::getViewConfiguration();
+
+        } else {
+            $this->Flow_Aop_Proxy_methodIsInAdviceMode['getViewConfiguration'] = TRUE;
+            try {
+            
+                $methodArguments = [];
+
+                $adviceChains = $this->Flow_Aop_Proxy_getAdviceChains('getViewConfiguration');
+                $adviceChain = $adviceChains['Neos\Flow\Aop\Advice\AroundAdvice'];
+                $adviceChain->rewind();
+                $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'AgzHack\Api\Controller\LightMarkersController', 'getViewConfiguration', $methodArguments, $adviceChain);
+                $result = $adviceChain->proceed($joinPoint);
+                $methodArguments = $joinPoint->getMethodArguments();
+
+            } catch (\Exception $exception) {
+                unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['getViewConfiguration']);
+                throw $exception;
+            }
+            unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['getViewConfiguration']);
+        }
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     * @return string The action method name
+     * @throws NoSuchActionException if the action specified in the request object does not exist (and if there's no default action either).
+     */
+    protected function resolveActionMethodName()
+    {
+
+        if (isset($this->Flow_Aop_Proxy_methodIsInAdviceMode['resolveActionMethodName'])) {
+            $result = parent::resolveActionMethodName();
+
+        } else {
+            $this->Flow_Aop_Proxy_methodIsInAdviceMode['resolveActionMethodName'] = TRUE;
+            try {
+            
+                $methodArguments = [];
+
+                $adviceChains = $this->Flow_Aop_Proxy_getAdviceChains('resolveActionMethodName');
+                $adviceChain = $adviceChains['Neos\Flow\Aop\Advice\AroundAdvice'];
+                $adviceChain->rewind();
+                $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'AgzHack\Api\Controller\LightMarkersController', 'resolveActionMethodName', $methodArguments, $adviceChain);
+                $result = $adviceChain->proceed($joinPoint);
+                $methodArguments = $joinPoint->getMethodArguments();
+
+            } catch (\Exception $exception) {
+                unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['resolveActionMethodName']);
+                throw $exception;
+            }
+            unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['resolveActionMethodName']);
+        }
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     * @return void
+     */
+    protected function initializeUpdateAction()
+    {
+
+        if (isset($this->Flow_Aop_Proxy_methodIsInAdviceMode['initializeUpdateAction'])) {
+            $result = parent::initializeUpdateAction();
+
+        } else {
+            $this->Flow_Aop_Proxy_methodIsInAdviceMode['initializeUpdateAction'] = TRUE;
+            try {
+            
+                $methodArguments = [];
+
+                $adviceChains = $this->Flow_Aop_Proxy_getAdviceChains('initializeUpdateAction');
+                $adviceChain = $adviceChains['Neos\Flow\Aop\Advice\AroundAdvice'];
+                $adviceChain->rewind();
+                $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'AgzHack\Api\Controller\LightMarkersController', 'initializeUpdateAction', $methodArguments, $adviceChain);
+                $result = $adviceChain->proceed($joinPoint);
+                $methodArguments = $joinPoint->getMethodArguments();
+
+            } catch (\Exception $exception) {
+                unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['initializeUpdateAction']);
+                throw $exception;
+            }
+            unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['initializeUpdateAction']);
+        }
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     * @param mixed $uri Either a string representation of a URI or a \Neos\Flow\Http\Uri object
+     * @param integer $delay (optional) The delay in seconds. Default is no delay.
+     * @param integer $statusCode (optional) The HTTP status code for the redirect. Default is "303 See Other
+     * @return void
+     * @throws StopActionException
+     */
+    protected function redirectToUri($uri, $delay = 0, $statusCode = 303)
+    {
+
+        if (isset($this->Flow_Aop_Proxy_methodIsInAdviceMode['redirectToUri'])) {
+            $result = parent::redirectToUri($uri, $delay, $statusCode);
+
+        } else {
+            $this->Flow_Aop_Proxy_methodIsInAdviceMode['redirectToUri'] = TRUE;
+            try {
+            
+                $methodArguments = [];
+
+                $methodArguments['uri'] = $uri;
+                $methodArguments['delay'] = $delay;
+                $methodArguments['statusCode'] = $statusCode;
+            
+                $adviceChains = $this->Flow_Aop_Proxy_getAdviceChains('redirectToUri');
+                $adviceChain = $adviceChains['Neos\Flow\Aop\Advice\AroundAdvice'];
+                $adviceChain->rewind();
+                $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'AgzHack\Api\Controller\LightMarkersController', 'redirectToUri', $methodArguments, $adviceChain);
+                $result = $adviceChain->proceed($joinPoint);
+                $methodArguments = $joinPoint->getMethodArguments();
+
+            } catch (\Exception $exception) {
+                unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['redirectToUri']);
+                throw $exception;
+            }
+            unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['redirectToUri']);
+        }
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     * @param array $settings
+     * @return void
+     */
+    public function injectSettings(array $settings)
+    {
+
+        if (isset($this->Flow_Aop_Proxy_methodIsInAdviceMode['injectSettings'])) {
+            $result = parent::injectSettings($settings);
+
+        } else {
+            $this->Flow_Aop_Proxy_methodIsInAdviceMode['injectSettings'] = TRUE;
+            try {
+            
+                $methodArguments = [];
+
+                $methodArguments['settings'] = $settings;
+            
+                $adviceChains = $this->Flow_Aop_Proxy_getAdviceChains('injectSettings');
+                $adviceChain = $adviceChains['Neos\Flow\Aop\Advice\AroundAdvice'];
+                $adviceChain->rewind();
+                $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'AgzHack\Api\Controller\LightMarkersController', 'injectSettings', $methodArguments, $adviceChain);
+                $result = $adviceChain->proceed($joinPoint);
+                $methodArguments = $joinPoint->getMethodArguments();
+
+            } catch (\Exception $exception) {
+                unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['injectSettings']);
+                throw $exception;
+            }
+            unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['injectSettings']);
+        }
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     * @param RequestInterface $request The request object
+     * @param ResponseInterface $response The response, modified by this handler
+     * @return void
+     * @throws UnsupportedRequestTypeException
+     */
+    public function processRequest(\Neos\Flow\Mvc\RequestInterface $request, \Neos\Flow\Mvc\ResponseInterface $response)
+    {
+
+        if (isset($this->Flow_Aop_Proxy_methodIsInAdviceMode['processRequest'])) {
+            $result = parent::processRequest($request, $response);
+
+        } else {
+            $this->Flow_Aop_Proxy_methodIsInAdviceMode['processRequest'] = TRUE;
+            try {
+            
+                $methodArguments = [];
+
+                $methodArguments['request'] = $request;
+                $methodArguments['response'] = $response;
+            
+                $adviceChains = $this->Flow_Aop_Proxy_getAdviceChains('processRequest');
+                $adviceChain = $adviceChains['Neos\Flow\Aop\Advice\AroundAdvice'];
+                $adviceChain->rewind();
+                $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'AgzHack\Api\Controller\LightMarkersController', 'processRequest', $methodArguments, $adviceChain);
+                $result = $adviceChain->proceed($joinPoint);
+                $methodArguments = $joinPoint->getMethodArguments();
+
+            } catch (\Exception $exception) {
+                unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['processRequest']);
+                throw $exception;
+            }
+            unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['processRequest']);
+        }
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     * @return void
+     * @throws InvalidArgumentTypeException
+     */
+    protected function initializeActionMethodArguments()
+    {
+
+        if (isset($this->Flow_Aop_Proxy_methodIsInAdviceMode['initializeActionMethodArguments'])) {
+            $result = parent::initializeActionMethodArguments();
+
+        } else {
+            $this->Flow_Aop_Proxy_methodIsInAdviceMode['initializeActionMethodArguments'] = TRUE;
+            try {
+            
+                $methodArguments = [];
+
+                $adviceChains = $this->Flow_Aop_Proxy_getAdviceChains('initializeActionMethodArguments');
+                $adviceChain = $adviceChains['Neos\Flow\Aop\Advice\AroundAdvice'];
+                $adviceChain->rewind();
+                $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'AgzHack\Api\Controller\LightMarkersController', 'initializeActionMethodArguments', $methodArguments, $adviceChain);
+                $result = $adviceChain->proceed($joinPoint);
+                $methodArguments = $joinPoint->getMethodArguments();
+
+            } catch (\Exception $exception) {
+                unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['initializeActionMethodArguments']);
+                throw $exception;
+            }
+            unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['initializeActionMethodArguments']);
+        }
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     * @return array
+     */
+    protected function getInformationNeededForInitializeActionMethodValidators()
+    {
+
+        if (isset($this->Flow_Aop_Proxy_methodIsInAdviceMode['getInformationNeededForInitializeActionMethodValidators'])) {
+            $result = parent::getInformationNeededForInitializeActionMethodValidators();
+
+        } else {
+            $this->Flow_Aop_Proxy_methodIsInAdviceMode['getInformationNeededForInitializeActionMethodValidators'] = TRUE;
+            try {
+            
+                $methodArguments = [];
+
+                $adviceChains = $this->Flow_Aop_Proxy_getAdviceChains('getInformationNeededForInitializeActionMethodValidators');
+                $adviceChain = $adviceChains['Neos\Flow\Aop\Advice\AroundAdvice'];
+                $adviceChain->rewind();
+                $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'AgzHack\Api\Controller\LightMarkersController', 'getInformationNeededForInitializeActionMethodValidators', $methodArguments, $adviceChain);
+                $result = $adviceChain->proceed($joinPoint);
+                $methodArguments = $joinPoint->getMethodArguments();
+
+            } catch (\Exception $exception) {
+                unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['getInformationNeededForInitializeActionMethodValidators']);
+                throw $exception;
+            }
+            unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['getInformationNeededForInitializeActionMethodValidators']);
+        }
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     * @return void
+     */
+    protected function initializeActionMethodValidators()
+    {
+
+        if (isset($this->Flow_Aop_Proxy_methodIsInAdviceMode['initializeActionMethodValidators'])) {
+            $result = parent::initializeActionMethodValidators();
+
+        } else {
+            $this->Flow_Aop_Proxy_methodIsInAdviceMode['initializeActionMethodValidators'] = TRUE;
+            try {
+            
+                $methodArguments = [];
+
+                $adviceChains = $this->Flow_Aop_Proxy_getAdviceChains('initializeActionMethodValidators');
+                $adviceChain = $adviceChains['Neos\Flow\Aop\Advice\AroundAdvice'];
+                $adviceChain->rewind();
+                $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'AgzHack\Api\Controller\LightMarkersController', 'initializeActionMethodValidators', $methodArguments, $adviceChain);
+                $result = $adviceChain->proceed($joinPoint);
+                $methodArguments = $joinPoint->getMethodArguments();
+
+            } catch (\Exception $exception) {
+                unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['initializeActionMethodValidators']);
+                throw $exception;
+            }
+            unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['initializeActionMethodValidators']);
+        }
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     * @return void
+     */
+    protected function initializeAction()
+    {
+
+        if (isset($this->Flow_Aop_Proxy_methodIsInAdviceMode['initializeAction'])) {
+            $result = parent::initializeAction();
+
+        } else {
+            $this->Flow_Aop_Proxy_methodIsInAdviceMode['initializeAction'] = TRUE;
+            try {
+            
+                $methodArguments = [];
+
+                $adviceChains = $this->Flow_Aop_Proxy_getAdviceChains('initializeAction');
+                $adviceChain = $adviceChains['Neos\Flow\Aop\Advice\AroundAdvice'];
+                $adviceChain->rewind();
+                $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'AgzHack\Api\Controller\LightMarkersController', 'initializeAction', $methodArguments, $adviceChain);
+                $result = $adviceChain->proceed($joinPoint);
+                $methodArguments = $joinPoint->getMethodArguments();
+
+            } catch (\Exception $exception) {
+                unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['initializeAction']);
+                throw $exception;
+            }
+            unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['initializeAction']);
+        }
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     * @return void
+     */
+    protected function callActionMethod()
+    {
+
+        if (isset($this->Flow_Aop_Proxy_methodIsInAdviceMode['callActionMethod'])) {
+            $result = parent::callActionMethod();
+
+        } else {
+            $this->Flow_Aop_Proxy_methodIsInAdviceMode['callActionMethod'] = TRUE;
+            try {
+            
+                $methodArguments = [];
+
+                $adviceChains = $this->Flow_Aop_Proxy_getAdviceChains('callActionMethod');
+                $adviceChain = $adviceChains['Neos\Flow\Aop\Advice\AroundAdvice'];
+                $adviceChain->rewind();
+                $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'AgzHack\Api\Controller\LightMarkersController', 'callActionMethod', $methodArguments, $adviceChain);
+                $result = $adviceChain->proceed($joinPoint);
+                $methodArguments = $joinPoint->getMethodArguments();
+
+            } catch (\Exception $exception) {
+                unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['callActionMethod']);
+                throw $exception;
+            }
+            unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['callActionMethod']);
+        }
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     * @return ViewInterface the resolved view
+     * @throws ViewNotFoundException if no view can be resolved
+     */
+    protected function resolveView()
+    {
+
+        if (isset($this->Flow_Aop_Proxy_methodIsInAdviceMode['resolveView'])) {
+            $result = parent::resolveView();
+
+        } else {
+            $this->Flow_Aop_Proxy_methodIsInAdviceMode['resolveView'] = TRUE;
+            try {
+            
+                $methodArguments = [];
+
+                $adviceChains = $this->Flow_Aop_Proxy_getAdviceChains('resolveView');
+                $adviceChain = $adviceChains['Neos\Flow\Aop\Advice\AroundAdvice'];
+                $adviceChain->rewind();
+                $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'AgzHack\Api\Controller\LightMarkersController', 'resolveView', $methodArguments, $adviceChain);
+                $result = $adviceChain->proceed($joinPoint);
+                $methodArguments = $joinPoint->getMethodArguments();
+
+            } catch (\Exception $exception) {
+                unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['resolveView']);
+                throw $exception;
+            }
+            unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['resolveView']);
+        }
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     * @return mixed The fully qualified view object name or FALSE if no matching view could be found.
+     */
+    protected function resolveViewObjectName()
+    {
+
+        if (isset($this->Flow_Aop_Proxy_methodIsInAdviceMode['resolveViewObjectName'])) {
+            $result = parent::resolveViewObjectName();
+
+        } else {
+            $this->Flow_Aop_Proxy_methodIsInAdviceMode['resolveViewObjectName'] = TRUE;
+            try {
+            
+                $methodArguments = [];
+
+                $adviceChains = $this->Flow_Aop_Proxy_getAdviceChains('resolveViewObjectName');
+                $adviceChain = $adviceChains['Neos\Flow\Aop\Advice\AroundAdvice'];
+                $adviceChain->rewind();
+                $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'AgzHack\Api\Controller\LightMarkersController', 'resolveViewObjectName', $methodArguments, $adviceChain);
+                $result = $adviceChain->proceed($joinPoint);
+                $methodArguments = $joinPoint->getMethodArguments();
+
+            } catch (\Exception $exception) {
+                unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['resolveViewObjectName']);
+                throw $exception;
+            }
+            unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['resolveViewObjectName']);
+        }
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     * @param ViewInterface $view The view to be initialized
+     * @return void
+     */
+    protected function initializeView(\Neos\Flow\Mvc\View\ViewInterface $view)
+    {
+
+        if (isset($this->Flow_Aop_Proxy_methodIsInAdviceMode['initializeView'])) {
+            $result = parent::initializeView($view);
+
+        } else {
+            $this->Flow_Aop_Proxy_methodIsInAdviceMode['initializeView'] = TRUE;
+            try {
+            
+                $methodArguments = [];
+
+                $methodArguments['view'] = $view;
+            
+                $adviceChains = $this->Flow_Aop_Proxy_getAdviceChains('initializeView');
+                $adviceChain = $adviceChains['Neos\Flow\Aop\Advice\AroundAdvice'];
+                $adviceChain->rewind();
+                $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'AgzHack\Api\Controller\LightMarkersController', 'initializeView', $methodArguments, $adviceChain);
+                $result = $adviceChain->proceed($joinPoint);
+                $methodArguments = $joinPoint->getMethodArguments();
+
+            } catch (\Exception $exception) {
+                unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['initializeView']);
+                throw $exception;
+            }
+            unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['initializeView']);
+        }
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     * @return string
+     */
+    protected function errorAction()
+    {
+
+        if (isset($this->Flow_Aop_Proxy_methodIsInAdviceMode['errorAction'])) {
+            $result = parent::errorAction();
+
+        } else {
+            $this->Flow_Aop_Proxy_methodIsInAdviceMode['errorAction'] = TRUE;
+            try {
+            
+                $methodArguments = [];
+
+                $adviceChains = $this->Flow_Aop_Proxy_getAdviceChains('errorAction');
+                $adviceChain = $adviceChains['Neos\Flow\Aop\Advice\AroundAdvice'];
+                $adviceChain->rewind();
+                $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'AgzHack\Api\Controller\LightMarkersController', 'errorAction', $methodArguments, $adviceChain);
+                $result = $adviceChain->proceed($joinPoint);
+                $methodArguments = $joinPoint->getMethodArguments();
+
+            } catch (\Exception $exception) {
+                unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['errorAction']);
+                throw $exception;
+            }
+            unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['errorAction']);
+        }
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     * @return void
+     * @throws TargetNotFoundException
+     */
+    protected function handleTargetNotFoundError()
+    {
+
+        if (isset($this->Flow_Aop_Proxy_methodIsInAdviceMode['handleTargetNotFoundError'])) {
+            $result = parent::handleTargetNotFoundError();
+
+        } else {
+            $this->Flow_Aop_Proxy_methodIsInAdviceMode['handleTargetNotFoundError'] = TRUE;
+            try {
+            
+                $methodArguments = [];
+
+                $adviceChains = $this->Flow_Aop_Proxy_getAdviceChains('handleTargetNotFoundError');
+                $adviceChain = $adviceChains['Neos\Flow\Aop\Advice\AroundAdvice'];
+                $adviceChain->rewind();
+                $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'AgzHack\Api\Controller\LightMarkersController', 'handleTargetNotFoundError', $methodArguments, $adviceChain);
+                $result = $adviceChain->proceed($joinPoint);
+                $methodArguments = $joinPoint->getMethodArguments();
+
+            } catch (\Exception $exception) {
+                unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['handleTargetNotFoundError']);
+                throw $exception;
+            }
+            unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['handleTargetNotFoundError']);
+        }
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     * @return void
+     */
+    protected function addErrorFlashMessage()
+    {
+
+        if (isset($this->Flow_Aop_Proxy_methodIsInAdviceMode['addErrorFlashMessage'])) {
+            $result = parent::addErrorFlashMessage();
+
+        } else {
+            $this->Flow_Aop_Proxy_methodIsInAdviceMode['addErrorFlashMessage'] = TRUE;
+            try {
+            
+                $methodArguments = [];
+
+                $adviceChains = $this->Flow_Aop_Proxy_getAdviceChains('addErrorFlashMessage');
+                $adviceChain = $adviceChains['Neos\Flow\Aop\Advice\AroundAdvice'];
+                $adviceChain->rewind();
+                $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'AgzHack\Api\Controller\LightMarkersController', 'addErrorFlashMessage', $methodArguments, $adviceChain);
+                $result = $adviceChain->proceed($joinPoint);
+                $methodArguments = $joinPoint->getMethodArguments();
+
+            } catch (\Exception $exception) {
+                unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['addErrorFlashMessage']);
+                throw $exception;
+            }
+            unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['addErrorFlashMessage']);
+        }
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     * @return void
+     * @throws ForwardException
+     */
+    protected function forwardToReferringRequest()
+    {
+
+        if (isset($this->Flow_Aop_Proxy_methodIsInAdviceMode['forwardToReferringRequest'])) {
+            $result = parent::forwardToReferringRequest();
+
+        } else {
+            $this->Flow_Aop_Proxy_methodIsInAdviceMode['forwardToReferringRequest'] = TRUE;
+            try {
+            
+                $methodArguments = [];
+
+                $adviceChains = $this->Flow_Aop_Proxy_getAdviceChains('forwardToReferringRequest');
+                $adviceChain = $adviceChains['Neos\Flow\Aop\Advice\AroundAdvice'];
+                $adviceChain->rewind();
+                $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'AgzHack\Api\Controller\LightMarkersController', 'forwardToReferringRequest', $methodArguments, $adviceChain);
+                $result = $adviceChain->proceed($joinPoint);
+                $methodArguments = $joinPoint->getMethodArguments();
+
+            } catch (\Exception $exception) {
+                unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['forwardToReferringRequest']);
+                throw $exception;
+            }
+            unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['forwardToReferringRequest']);
+        }
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     * @return string
+     */
+    protected function getFlattenedValidationErrorMessage()
+    {
+
+        if (isset($this->Flow_Aop_Proxy_methodIsInAdviceMode['getFlattenedValidationErrorMessage'])) {
+            $result = parent::getFlattenedValidationErrorMessage();
+
+        } else {
+            $this->Flow_Aop_Proxy_methodIsInAdviceMode['getFlattenedValidationErrorMessage'] = TRUE;
+            try {
+            
+                $methodArguments = [];
+
+                $adviceChains = $this->Flow_Aop_Proxy_getAdviceChains('getFlattenedValidationErrorMessage');
+                $adviceChain = $adviceChains['Neos\Flow\Aop\Advice\AroundAdvice'];
+                $adviceChain->rewind();
+                $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'AgzHack\Api\Controller\LightMarkersController', 'getFlattenedValidationErrorMessage', $methodArguments, $adviceChain);
+                $result = $adviceChain->proceed($joinPoint);
+                $methodArguments = $joinPoint->getMethodArguments();
+
+            } catch (\Exception $exception) {
+                unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['getFlattenedValidationErrorMessage']);
+                throw $exception;
+            }
+            unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['getFlattenedValidationErrorMessage']);
+        }
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     * @return \Neos\Error\Messages\Message The flash message or FALSE if no flash message should be set
+     */
+    protected function getErrorFlashMessage()
+    {
+
+        if (isset($this->Flow_Aop_Proxy_methodIsInAdviceMode['getErrorFlashMessage'])) {
+            $result = parent::getErrorFlashMessage();
+
+        } else {
+            $this->Flow_Aop_Proxy_methodIsInAdviceMode['getErrorFlashMessage'] = TRUE;
+            try {
+            
+                $methodArguments = [];
+
+                $adviceChains = $this->Flow_Aop_Proxy_getAdviceChains('getErrorFlashMessage');
+                $adviceChain = $adviceChains['Neos\Flow\Aop\Advice\AroundAdvice'];
+                $adviceChain->rewind();
+                $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'AgzHack\Api\Controller\LightMarkersController', 'getErrorFlashMessage', $methodArguments, $adviceChain);
+                $result = $adviceChain->proceed($joinPoint);
+                $methodArguments = $joinPoint->getMethodArguments();
+
+            } catch (\Exception $exception) {
+                unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['getErrorFlashMessage']);
+                throw $exception;
+            }
+            unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['getErrorFlashMessage']);
+        }
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     * @param RequestInterface $request
+     * @param ResponseInterface $response
+     * @throws UnsupportedRequestTypeException
+     */
+    protected function initializeController(\Neos\Flow\Mvc\RequestInterface $request, \Neos\Flow\Mvc\ResponseInterface $response)
+    {
+
+        if (isset($this->Flow_Aop_Proxy_methodIsInAdviceMode['initializeController'])) {
+            $result = parent::initializeController($request, $response);
+
+        } else {
+            $this->Flow_Aop_Proxy_methodIsInAdviceMode['initializeController'] = TRUE;
+            try {
+            
+                $methodArguments = [];
+
+                $methodArguments['request'] = $request;
+                $methodArguments['response'] = $response;
+            
+                $adviceChains = $this->Flow_Aop_Proxy_getAdviceChains('initializeController');
+                $adviceChain = $adviceChains['Neos\Flow\Aop\Advice\AroundAdvice'];
+                $adviceChain->rewind();
+                $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'AgzHack\Api\Controller\LightMarkersController', 'initializeController', $methodArguments, $adviceChain);
+                $result = $adviceChain->proceed($joinPoint);
+                $methodArguments = $joinPoint->getMethodArguments();
+
+            } catch (\Exception $exception) {
+                unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['initializeController']);
+                throw $exception;
+            }
+            unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['initializeController']);
+        }
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     * @return ControllerContext The current controller context
+     */
+    public function getControllerContext()
+    {
+
+        if (isset($this->Flow_Aop_Proxy_methodIsInAdviceMode['getControllerContext'])) {
+            $result = parent::getControllerContext();
+
+        } else {
+            $this->Flow_Aop_Proxy_methodIsInAdviceMode['getControllerContext'] = TRUE;
+            try {
+            
+                $methodArguments = [];
+
+                $adviceChains = $this->Flow_Aop_Proxy_getAdviceChains('getControllerContext');
+                $adviceChain = $adviceChains['Neos\Flow\Aop\Advice\AroundAdvice'];
+                $adviceChain->rewind();
+                $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'AgzHack\Api\Controller\LightMarkersController', 'getControllerContext', $methodArguments, $adviceChain);
+                $result = $adviceChain->proceed($joinPoint);
+                $methodArguments = $joinPoint->getMethodArguments();
+
+            } catch (\Exception $exception) {
+                unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['getControllerContext']);
+                throw $exception;
+            }
+            unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['getControllerContext']);
+        }
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     * @param string $messageBody text of the FlashMessage
+     * @param string $messageTitle optional header of the FlashMessage
+     * @param string $severity severity of the FlashMessage (one of the Message::SEVERITY_* constants)
+     * @param array $messageArguments arguments to be passed to the FlashMessage
+     * @param integer $messageCode
+     * @return void
+     * @throws \InvalidArgumentException if the message body is no string
+     */
+    public function addFlashMessage($messageBody, $messageTitle = '', $severity = 'OK', array $messageArguments = array(), $messageCode = NULL)
+    {
+
+        if (isset($this->Flow_Aop_Proxy_methodIsInAdviceMode['addFlashMessage'])) {
+            $result = parent::addFlashMessage($messageBody, $messageTitle, $severity, $messageArguments, $messageCode);
+
+        } else {
+            $this->Flow_Aop_Proxy_methodIsInAdviceMode['addFlashMessage'] = TRUE;
+            try {
+            
+                $methodArguments = [];
+
+                $methodArguments['messageBody'] = $messageBody;
+                $methodArguments['messageTitle'] = $messageTitle;
+                $methodArguments['severity'] = $severity;
+                $methodArguments['messageArguments'] = $messageArguments;
+                $methodArguments['messageCode'] = $messageCode;
+            
+                $adviceChains = $this->Flow_Aop_Proxy_getAdviceChains('addFlashMessage');
+                $adviceChain = $adviceChains['Neos\Flow\Aop\Advice\AroundAdvice'];
+                $adviceChain->rewind();
+                $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'AgzHack\Api\Controller\LightMarkersController', 'addFlashMessage', $methodArguments, $adviceChain);
+                $result = $adviceChain->proceed($joinPoint);
+                $methodArguments = $joinPoint->getMethodArguments();
+
+            } catch (\Exception $exception) {
+                unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['addFlashMessage']);
+                throw $exception;
+            }
+            unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['addFlashMessage']);
+        }
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     * @param string $actionName Name of the action to forward to
+     * @param string $controllerName Unqualified object name of the controller to forward to. If not specified, the current controller is used.
+     * @param string $packageKey Key of the package containing the controller to forward to. May also contain the sub package, concatenated with backslash (Vendor.Foo\Bar\Baz). If not specified, the current package is assumed.
+     * @param array $arguments Arguments to pass to the target action
+     * @return void
+     * @throws ForwardException
+     */
+    protected function forward($actionName, $controllerName = NULL, $packageKey = NULL, array $arguments = array())
+    {
+
+        if (isset($this->Flow_Aop_Proxy_methodIsInAdviceMode['forward'])) {
+            $result = parent::forward($actionName, $controllerName, $packageKey, $arguments);
+
+        } else {
+            $this->Flow_Aop_Proxy_methodIsInAdviceMode['forward'] = TRUE;
+            try {
+            
+                $methodArguments = [];
+
+                $methodArguments['actionName'] = $actionName;
+                $methodArguments['controllerName'] = $controllerName;
+                $methodArguments['packageKey'] = $packageKey;
+                $methodArguments['arguments'] = $arguments;
+            
+                $adviceChains = $this->Flow_Aop_Proxy_getAdviceChains('forward');
+                $adviceChain = $adviceChains['Neos\Flow\Aop\Advice\AroundAdvice'];
+                $adviceChain->rewind();
+                $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'AgzHack\Api\Controller\LightMarkersController', 'forward', $methodArguments, $adviceChain);
+                $result = $adviceChain->proceed($joinPoint);
+                $methodArguments = $joinPoint->getMethodArguments();
+
+            } catch (\Exception $exception) {
+                unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['forward']);
+                throw $exception;
+            }
+            unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['forward']);
+        }
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     * @param ActionRequest $request The request to redirect to
+     * @return void
+     * @throws ForwardException
+     */
+    protected function forwardToRequest(\Neos\Flow\Mvc\ActionRequest $request)
+    {
+
+        if (isset($this->Flow_Aop_Proxy_methodIsInAdviceMode['forwardToRequest'])) {
+            $result = parent::forwardToRequest($request);
+
+        } else {
+            $this->Flow_Aop_Proxy_methodIsInAdviceMode['forwardToRequest'] = TRUE;
+            try {
+            
+                $methodArguments = [];
+
+                $methodArguments['request'] = $request;
+            
+                $adviceChains = $this->Flow_Aop_Proxy_getAdviceChains('forwardToRequest');
+                $adviceChain = $adviceChains['Neos\Flow\Aop\Advice\AroundAdvice'];
+                $adviceChain->rewind();
+                $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'AgzHack\Api\Controller\LightMarkersController', 'forwardToRequest', $methodArguments, $adviceChain);
+                $result = $adviceChain->proceed($joinPoint);
+                $methodArguments = $joinPoint->getMethodArguments();
+
+            } catch (\Exception $exception) {
+                unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['forwardToRequest']);
+                throw $exception;
+            }
+            unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['forwardToRequest']);
+        }
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     * @param string $actionName Name of the action to forward to
+     * @param string $controllerName Unqualified object name of the controller to forward to. If not specified, the current controller is used.
+     * @param string $packageKey Key of the package containing the controller to forward to. If not specified, the current package is assumed.
+     * @param array $arguments Array of arguments for the target action
+     * @param integer $delay (optional) The delay in seconds. Default is no delay.
+     * @param integer $statusCode (optional) The HTTP status code for the redirect. Default is "303 See Other
+     * @param string $format The format to use for the redirect URI
+     * @return void
+     * @throws StopActionException
+     */
+    protected function redirect($actionName, $controllerName = NULL, $packageKey = NULL, array $arguments = NULL, $delay = 0, $statusCode = 303, $format = NULL)
+    {
+
+        if (isset($this->Flow_Aop_Proxy_methodIsInAdviceMode['redirect'])) {
+            $result = parent::redirect($actionName, $controllerName, $packageKey, $arguments, $delay, $statusCode, $format);
+
+        } else {
+            $this->Flow_Aop_Proxy_methodIsInAdviceMode['redirect'] = TRUE;
+            try {
+            
+                $methodArguments = [];
+
+                $methodArguments['actionName'] = $actionName;
+                $methodArguments['controllerName'] = $controllerName;
+                $methodArguments['packageKey'] = $packageKey;
+                $methodArguments['arguments'] = $arguments;
+                $methodArguments['delay'] = $delay;
+                $methodArguments['statusCode'] = $statusCode;
+                $methodArguments['format'] = $format;
+            
+                $adviceChains = $this->Flow_Aop_Proxy_getAdviceChains('redirect');
+                $adviceChain = $adviceChains['Neos\Flow\Aop\Advice\AroundAdvice'];
+                $adviceChain->rewind();
+                $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'AgzHack\Api\Controller\LightMarkersController', 'redirect', $methodArguments, $adviceChain);
+                $result = $adviceChain->proceed($joinPoint);
+                $methodArguments = $joinPoint->getMethodArguments();
+
+            } catch (\Exception $exception) {
+                unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['redirect']);
+                throw $exception;
+            }
+            unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['redirect']);
+        }
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     * @param ActionRequest $request The request to redirect to
+     * @param integer $delay (optional) The delay in seconds. Default is no delay.
+     * @param integer $statusCode (optional) The HTTP status code for the redirect. Default is "303 See Other
+     * @return void
+     * @throws StopActionException
+     */
+    protected function redirectToRequest(\Neos\Flow\Mvc\ActionRequest $request, $delay = 0, $statusCode = 303)
+    {
+
+        if (isset($this->Flow_Aop_Proxy_methodIsInAdviceMode['redirectToRequest'])) {
+            $result = parent::redirectToRequest($request, $delay, $statusCode);
+
+        } else {
+            $this->Flow_Aop_Proxy_methodIsInAdviceMode['redirectToRequest'] = TRUE;
+            try {
+            
+                $methodArguments = [];
+
+                $methodArguments['request'] = $request;
+                $methodArguments['delay'] = $delay;
+                $methodArguments['statusCode'] = $statusCode;
+            
+                $adviceChains = $this->Flow_Aop_Proxy_getAdviceChains('redirectToRequest');
+                $adviceChain = $adviceChains['Neos\Flow\Aop\Advice\AroundAdvice'];
+                $adviceChain->rewind();
+                $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'AgzHack\Api\Controller\LightMarkersController', 'redirectToRequest', $methodArguments, $adviceChain);
+                $result = $adviceChain->proceed($joinPoint);
+                $methodArguments = $joinPoint->getMethodArguments();
+
+            } catch (\Exception $exception) {
+                unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['redirectToRequest']);
+                throw $exception;
+            }
+            unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['redirectToRequest']);
+        }
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     * @param integer $statusCode The HTTP status code
+     * @param string $statusMessage A custom HTTP status message
+     * @param string $content Body content which further explains the status
+     * @throws UnsupportedRequestTypeException If the request is not a web request
+     * @throws StopActionException
+     */
+    protected function throwStatus($statusCode, $statusMessage = NULL, $content = NULL)
+    {
+
+        if (isset($this->Flow_Aop_Proxy_methodIsInAdviceMode['throwStatus'])) {
+            $result = parent::throwStatus($statusCode, $statusMessage, $content);
+
+        } else {
+            $this->Flow_Aop_Proxy_methodIsInAdviceMode['throwStatus'] = TRUE;
+            try {
+            
+                $methodArguments = [];
+
+                $methodArguments['statusCode'] = $statusCode;
+                $methodArguments['statusMessage'] = $statusMessage;
+                $methodArguments['content'] = $content;
+            
+                $adviceChains = $this->Flow_Aop_Proxy_getAdviceChains('throwStatus');
+                $adviceChain = $adviceChains['Neos\Flow\Aop\Advice\AroundAdvice'];
+                $adviceChain->rewind();
+                $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'AgzHack\Api\Controller\LightMarkersController', 'throwStatus', $methodArguments, $adviceChain);
+                $result = $adviceChain->proceed($joinPoint);
+                $methodArguments = $joinPoint->getMethodArguments();
+
+            } catch (\Exception $exception) {
+                unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['throwStatus']);
+                throw $exception;
+            }
+            unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['throwStatus']);
+        }
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     * @return void
+     * @throws RequiredArgumentMissingException
+     */
+    protected function mapRequestArgumentsToControllerArguments()
+    {
+
+        if (isset($this->Flow_Aop_Proxy_methodIsInAdviceMode['mapRequestArgumentsToControllerArguments'])) {
+            $result = parent::mapRequestArgumentsToControllerArguments();
+
+        } else {
+            $this->Flow_Aop_Proxy_methodIsInAdviceMode['mapRequestArgumentsToControllerArguments'] = TRUE;
+            try {
+            
+                $methodArguments = [];
+
+                $adviceChains = $this->Flow_Aop_Proxy_getAdviceChains('mapRequestArgumentsToControllerArguments');
+                $adviceChain = $adviceChains['Neos\Flow\Aop\Advice\AroundAdvice'];
+                $adviceChain->rewind();
+                $joinPoint = new \Neos\Flow\Aop\JoinPoint($this, 'AgzHack\Api\Controller\LightMarkersController', 'mapRequestArgumentsToControllerArguments', $methodArguments, $adviceChain);
+                $result = $adviceChain->proceed($joinPoint);
+                $methodArguments = $joinPoint->getMethodArguments();
+
+            } catch (\Exception $exception) {
+                unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['mapRequestArgumentsToControllerArguments']);
+                throw $exception;
+            }
+            unset($this->Flow_Aop_Proxy_methodIsInAdviceMode['mapRequestArgumentsToControllerArguments']);
+        }
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     */
+    public function __sleep()
+    {
+            $result = NULL;
+        $this->Flow_Object_PropertiesToSerialize = array();
+
+        $transientProperties = array (
+);
+        $propertyVarTags = array (
+  'lightMarkerRepository' => 'AgzHack\\Lux\\Domain\\Repository\\LightMarkerRepository',
+  'lightMarkerService' => 'AgzHack\\Lux\\Service\\LightMarkerService',
+  'request' => 'Neos\\Flow\\Mvc\\ActionRequest',
+  'response' => 'Neos\\Flow\\Http\\Response',
+  'objectManager' => 'Neos\\Flow\\ObjectManagement\\ObjectManagerInterface',
+  'reflectionService' => 'Neos\\Flow\\Reflection\\ReflectionService',
+  'mvcPropertyMappingConfigurationService' => 'Neos\\Flow\\Mvc\\Controller\\MvcPropertyMappingConfigurationService',
+  'viewConfigurationManager' => 'Neos\\Flow\\Mvc\\ViewConfigurationManager',
+  'view' => 'Neos\\Flow\\Mvc\\View\\ViewInterface',
+  'viewObjectNamePattern' => 'string',
+  'viewFormatToObjectNameMap' => 'array',
+  'defaultViewImplementation' => 'string',
+  'actionMethodName' => 'string',
+  'errorMethodName' => 'string',
+  'settings' => 'array',
+  'systemLogger' => 'Neos\\Flow\\Log\\SystemLoggerInterface',
+  'uriBuilder' => 'Neos\\Flow\\Mvc\\Routing\\UriBuilder',
+  'validatorResolver' => 'Neos\\Flow\\Validation\\ValidatorResolver',
+  'arguments' => 'Neos\\Flow\\Mvc\\Controller\\Arguments',
+  'controllerContext' => 'Neos\\Flow\\Mvc\\Controller\\ControllerContext',
+  'flashMessageContainer' => 'Neos\\Flow\\Mvc\\FlashMessageContainer',
+  'persistenceManager' => 'Neos\\Flow\\Persistence\\PersistenceManagerInterface',
+  'supportedMediaTypes' => 'array',
+);
+        $result = $this->Flow_serializeRelatedEntities($transientProperties, $propertyVarTags);
+        return $result;
+    }
+
+    /**
+     * Autogenerated Proxy Method
+     */
+    private function Flow_Proxy_injectProperties()
+    {
+        $this->injectSettings(\Neos\Flow\Core\Bootstrap::$staticObjectManager->get(\Neos\Flow\Configuration\ConfigurationManager::class)->getConfiguration('Settings', 'AgzHack.Api'));
+        $this->Flow_Proxy_LazyPropertyInjection('AgzHack\Lux\Domain\Repository\LightMarkerRepository', 'AgzHack\Lux\Domain\Repository\LightMarkerRepository', 'lightMarkerRepository', '5850672316d0488ef1358f18e9592365', function() { return \Neos\Flow\Core\Bootstrap::$staticObjectManager->get('AgzHack\Lux\Domain\Repository\LightMarkerRepository'); });
+        $this->Flow_Proxy_LazyPropertyInjection('AgzHack\Lux\Service\LightMarkerService', 'AgzHack\Lux\Service\LightMarkerService', 'lightMarkerService', '29ed746806b74e947f83a36103239c9b', function() { return \Neos\Flow\Core\Bootstrap::$staticObjectManager->get('AgzHack\Lux\Service\LightMarkerService'); });
+        $this->Flow_Proxy_LazyPropertyInjection('Neos\Flow\ObjectManagement\ObjectManagerInterface', 'Neos\Flow\ObjectManagement\ObjectManager', 'objectManager', '9524ff5e5332c1890aa361e5d186b7b6', function() { return \Neos\Flow\Core\Bootstrap::$staticObjectManager->get('Neos\Flow\ObjectManagement\ObjectManagerInterface'); });
+        $this->Flow_Proxy_LazyPropertyInjection('Neos\Flow\Reflection\ReflectionService', 'Neos\Flow\Reflection\ReflectionService', 'reflectionService', '464c26aa94c66579c050985566cbfc1f', function() { return \Neos\Flow\Core\Bootstrap::$staticObjectManager->get('Neos\Flow\Reflection\ReflectionService'); });
+        $this->Flow_Proxy_LazyPropertyInjection('Neos\Flow\Mvc\Controller\MvcPropertyMappingConfigurationService', 'Neos\Flow\Mvc\Controller\MvcPropertyMappingConfigurationService', 'mvcPropertyMappingConfigurationService', '245f31ad31ca22b8c2b2255e0f65f847', function() { return \Neos\Flow\Core\Bootstrap::$staticObjectManager->get('Neos\Flow\Mvc\Controller\MvcPropertyMappingConfigurationService'); });
+        $this->Flow_Proxy_LazyPropertyInjection('Neos\Flow\Mvc\ViewConfigurationManager', 'Neos\Flow\Mvc\ViewConfigurationManager', 'viewConfigurationManager', '40e27e95b530777b9b476762cf735a69', function() { return \Neos\Flow\Core\Bootstrap::$staticObjectManager->get('Neos\Flow\Mvc\ViewConfigurationManager'); });
+        $this->Flow_Proxy_LazyPropertyInjection('Neos\Flow\Log\SystemLoggerInterface', 'Neos\Flow\Log\Logger', 'systemLogger', '717e9de4d0309f4f47c821b9257eb5c2', function() { return \Neos\Flow\Core\Bootstrap::$staticObjectManager->get('Neos\Flow\Log\SystemLoggerInterface'); });
+        $this->Flow_Proxy_LazyPropertyInjection('Neos\Flow\Validation\ValidatorResolver', 'Neos\Flow\Validation\ValidatorResolver', 'validatorResolver', 'e992f50de62d81bfe770d5c5f1242621', function() { return \Neos\Flow\Core\Bootstrap::$staticObjectManager->get('Neos\Flow\Validation\ValidatorResolver'); });
+        $this->Flow_Proxy_LazyPropertyInjection('Neos\Flow\Mvc\FlashMessageContainer', 'Neos\Flow\Mvc\FlashMessageContainer', 'flashMessageContainer', 'a5f5265657df54eb081324fb2ff5b8e1', function() { return \Neos\Flow\Core\Bootstrap::$staticObjectManager->get('Neos\Flow\Mvc\FlashMessageContainer'); });
+        $this->Flow_Proxy_LazyPropertyInjection('Neos\Flow\Persistence\PersistenceManagerInterface', 'Neos\Flow\Persistence\Doctrine\PersistenceManager', 'persistenceManager', '8a72b773ea2cb98c2933df44c659da06', function() { return \Neos\Flow\Core\Bootstrap::$staticObjectManager->get('Neos\Flow\Persistence\PersistenceManagerInterface'); });
+        $this->defaultViewImplementation = \Neos\Flow\Core\Bootstrap::$staticObjectManager->get(\Neos\Flow\Configuration\ConfigurationManager::class)->getConfiguration('Settings', 'Neos.Flow.mvc.view.defaultImplementation');
+        $this->Flow_Injected_Properties = array (
+  0 => 'settings',
+  1 => 'lightMarkerRepository',
+  2 => 'lightMarkerService',
+  3 => 'objectManager',
+  4 => 'reflectionService',
+  5 => 'mvcPropertyMappingConfigurationService',
+  6 => 'viewConfigurationManager',
+  7 => 'systemLogger',
+  8 => 'validatorResolver',
+  9 => 'flashMessageContainer',
+  10 => 'persistenceManager',
+  11 => 'defaultViewImplementation',
+);
+    }
+}
+# PathAndFilename: /var/www/lux/Packages/Application/AgzHack.Api/Classes/Controller/LightMarkersController.php
+#

@@ -1,0 +1,53 @@
+Exception #1355480641 in line 312 of /var/www/lux/Packages/Framework/Neos.Flow/Classes/Core/Booting/Scripts.php: Warning: preg_match(): Compilation failed: nothing to repeat at offset 1 in /var/www/lux/Packages/Framework/Neos.Flow/Classes/Aop/Pointcut/PointcutMethodNameFilter.php line 109
+
+  Type: Neos\Flow\Error\Exception
+  Code: 1
+  File: Packages/Framework/Neos.Flow/Classes/Error/ErrorHandler.php
+  Line: 81
+
+Open Data/Logs/Exceptions/20180128102733b77e7c.txt for a full stack trace.
+
+17 Neos\Flow\Core\Booting\Scripts::executeCommand("neos.flow:core:compile", array|17|)
+16 Neos\Flow\Core\Booting\Scripts::initializeProxyClasses(Neos\Flow\Core\Bootstrap)
+15 Neos\Flow\Core\Booting\Scripts::recompileClasses(Neos\Flow\Core\Bootstrap)
+14 call_user_func(array|2|, Neos\Flow\Core\Bootstrap)
+13 Neos\Flow\Core\Booting\Step::__invoke(Neos\Flow\Core\Bootstrap)
+12 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+11 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+10 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+9 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+8 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+7 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+6 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+5 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+4 Neos\Flow\Core\Booting\Sequence::invoke(Neos\Flow\Core\Bootstrap)
+3 Neos\Flow\Http\RequestHandler::boot()
+2 Neos\Flow\Http\RequestHandler::handleRequest()
+1 Neos\Flow\Core\Bootstrap::run()
+
+
+HTTP REQUEST:
+GET /light-markers?northEast[latitude]=1&northEast[longitude]=2&southWest[latitude]=2&southWest[longitude]=5 HTTP/1.1
+Host: localhost:1003
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+Upgrade-Insecure-Requests: 1
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cache-Control: max-age=0
+
+
+
+HTTP RESPONSE:
+[response was empty]
+
+PHP PROCESS:
+Inode: 3952909
+PID: 13
+UID: 1000
+GID: 1000
+User: 
+
+    [array] => 
+

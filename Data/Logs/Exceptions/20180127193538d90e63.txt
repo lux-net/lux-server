@@ -1,0 +1,30 @@
+Exception #1296143788: Missing required constructor argument $coordinateX in class AgzHack\Lux\Domain\Model\LightMark. Note that constructor injection is only support for objects of scope singleton (and this is not a singleton) – for other scopes you must pass each required argument to the constructor yourself.
+
+24 AgzHack\Lux\Domain\Model\LightMark::__construct()
+23 call_user_func_array(array|2|, array|0|)
+22 AgzHack\Lux\Domain\Model\LightMark::Flow_Aop_Proxy_invokeJoinPoint(Neos\Flow\Aop\JoinPoint)
+21 AgzHack\Lux\Domain\Model\LightMark::__construct()
+20 AgzHack\KML\Command\KmlCommandController_Original::testCommand()
+19 call_user_func_array(array|2|, array|0|)
+18 Neos\Flow\Cli\CommandController_Original::callCommandMethod()
+17 Neos\Flow\Cli\CommandController_Original::processRequest(Neos\Flow\Cli\Request, Neos\Flow\Cli\Response)
+16 Neos\Flow\Mvc\Dispatcher_Original::initiateDispatchLoop(Neos\Flow\Cli\Request, Neos\Flow\Cli\Response)
+15 Neos\Flow\Mvc\Dispatcher_Original::dispatch(Neos\Flow\Cli\Request, Neos\Flow\Cli\Response)
+14 Neos\Flow\Cli\CommandRequestHandler::Neos\Flow\Cli\{closure}()
+13 Closure::__invoke()
+12 Neos\Flow\Security\Context_Original::withoutAuthorizationChecks(Closure)
+11 Neos\Flow\Security\Context::withoutAuthorizationChecks(Closure)
+10 call_user_func_array(array|2|, array|1|)
+9 Neos\Flow\Security\Context::Flow_Aop_Proxy_invokeJoinPoint(Neos\Flow\Aop\JoinPoint)
+8 Neos\Flow\Aop\Advice\AdviceChain::proceed(Neos\Flow\Aop\JoinPoint)
+7 Neos\Flow\Session\Aspect\LazyLoadingAspect_Original::callMethodOnOriginalSessionObject(Neos\Flow\Aop\JoinPoint)
+6 Neos\Flow\Aop\Advice\AroundAdvice::invoke(Neos\Flow\Aop\JoinPoint)
+5 Neos\Flow\Aop\Advice\AdviceChain::proceed(Neos\Flow\Aop\JoinPoint)
+4 Neos\Flow\Security\Context::withoutAuthorizationChecks(Closure)
+3 Neos\Flow\Cli\CommandRequestHandler::handleRequest()
+2 Neos\Flow\Core\Bootstrap::run()
+1 require("/home/ernesto/repos/lux-server/Packages/Framework/Neos.Flow/Scripts/flow.php")
+
+
+    [array] => 
+

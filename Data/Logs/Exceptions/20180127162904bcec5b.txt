@@ -1,0 +1,38 @@
+Exception #1355480641 in line 570 of /home/ernesto/repos/lux/Packages/Framework/Neos.Flow/Classes/Core/Booting/Scripts.php: An exception occured in driver: could not find driver
+
+  Type: Doctrine\DBAL\Exception\DriverException
+  File: Packages/Libraries/doctrine/dbal/lib/Doctrine/DBAL/Driver/AbstractMySQLDriv
+        er.php
+  Line: 115
+
+Nested exception:
+could not find driver
+
+  Type: Doctrine\DBAL\Driver\PDOException
+  File: Packages/Libraries/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php
+  Line: 47
+
+Nested exception:
+could not find driver
+
+  Type: PDOException
+  File: Packages/Libraries/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php
+  Line: 43
+
+13 Neos\Flow\Core\Booting\Scripts::executeCommand("neos.flow:doctrine:compileproxies", array|17|)
+12 Neos\Flow\Core\Booting\Scripts::compileDoctrineProxies(Neos\Flow\Core\Bootstrap)
+11 Neos\Flow\Core\Booting\Scripts::initializeProxyClasses(Neos\Flow\Core\Bootstrap)
+10 call_user_func(array|2|, Neos\Flow\Core\Bootstrap)
+9 Neos\Flow\Core\Booting\Step::__invoke(Neos\Flow\Core\Bootstrap)
+8 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+7 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+6 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+5 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+4 Neos\Flow\Core\Booting\Sequence::invoke(Neos\Flow\Core\Bootstrap)
+3 Neos\Flow\Http\RequestHandler::boot()
+2 Neos\Flow\Http\RequestHandler::handleRequest()
+1 Neos\Flow\Core\Bootstrap::run()
+
+
+    [array] => 
+

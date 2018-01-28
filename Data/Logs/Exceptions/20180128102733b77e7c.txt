@@ -1,0 +1,24 @@
+Exception #1: Warning: preg_match(): Compilation failed: nothing to repeat at offset 1 in /var/www/lux/Packages/Framework/Neos.Flow/Classes/Aop/Pointcut/PointcutMethodNameFilter.php line 109
+
+18 Neos\Flow\Error\ErrorHandler::handleError(2, "preg_match(): Compilation failed: nothing to repeat at offset 1", "/var/www/lux/Packages/Framework/Neos.Flow/Classes/Aop/Pointcut/PointcutMethodNameFilter.php", 109, array|4|)
+17 preg_match("/^*Action$/", "__construct")
+16 Neos\Flow\Aop\Pointcut\PointcutMethodNameFilter::matches("AgzHack\Api\Controller\LightMarkersController", "__construct", "AgzHack\Api\Controller\LightMarkersController", 0)
+15 Neos\Flow\Aop\Pointcut\PointcutFilterComposite::matches("AgzHack\Api\Controller\LightMarkersController", "__construct", "AgzHack\Api\Controller\LightMarkersController", 0)
+14 Neos\Flow\Security\Authorization\Privilege\Method\MethodPrivilegePointcutFilter::matches("AgzHack\Api\Controller\LightMarkersController", "__construct", "AgzHack\Api\Controller\LightMarkersController", 0)
+13 Neos\Flow\Aop\Pointcut\PointcutFilterComposite::matches("AgzHack\Api\Controller\LightMarkersController", "__construct", "AgzHack\Api\Controller\LightMarkersController", 0)
+12 Neos\Flow\Aop\Pointcut\Pointcut::matches("AgzHack\Api\Controller\LightMarkersController", "__construct", "AgzHack\Api\Controller\LightMarkersController", 0)
+11 Neos\Flow\Aop\Builder\ProxyClassBuilder::addAdvicedMethodsToInterceptedMethods(array|0|, array|42|, "AgzHack\Api\Controller\LightMarkersController", array|7|)
+10 Neos\Flow\Aop\Builder\ProxyClassBuilder::buildProxyClass("AgzHack\Api\Controller\LightMarkersController", array|7|)
+9 Neos\Flow\Aop\Builder\ProxyClassBuilder::build()
+8 Neos\Flow\Command\CoreCommandController::compileCommand(FALSE)
+7 call_user_func_array(array|2|, array|1|)
+6 Neos\Flow\Cli\CommandController::callCommandMethod()
+5 Neos\Flow\Cli\CommandController::processRequest(Neos\Flow\Cli\Request, Neos\Flow\Cli\Response)
+4 Neos\Flow\Mvc\Dispatcher::initiateDispatchLoop(Neos\Flow\Cli\Request, Neos\Flow\Cli\Response)
+3 Neos\Flow\Mvc\Dispatcher::dispatch(Neos\Flow\Cli\Request, Neos\Flow\Cli\Response)
+2 Neos\Flow\Cli\CommandRequestHandler::handleRequest()
+1 Neos\Flow\Core\Bootstrap::run()
+
+
+    [array] => 
+

@@ -1,0 +1,96 @@
+Exception in line 483 of /var/www/lux/Packages/Libraries/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php: [Semantical Error] line 0, col 76 near 'coordinate0 WHERE': Error: Class AgzHack\Lux\Domain\Model\LightMarker has no association named coordinate
+
+31 Doctrine\ORM\Query\QueryException::semanticalError("line 0, col 76 near 'coordinate0 WHERE': Error: Cl…el\LightMarker has no association named coordinate", Doctrine\ORM\Query\QueryException)
+30 Doctrine\ORM\Query\Parser::semanticalError("line 0, col 76 near 'coordinate0 WHERE': Error: Cl…el\LightMarker has no association named coordinate")
+29 Doctrine\ORM\Query\Parser::JoinAssociationPathExpression()
+28 Doctrine\ORM\Query\Parser::JoinAssociationDeclaration()
+27 Doctrine\ORM\Query\Parser::Join()
+26 Doctrine\ORM\Query\Parser::IdentificationVariableDeclaration()
+25 Doctrine\ORM\Query\Parser::FromClause()
+24 Doctrine\ORM\Query\Parser::SelectStatement()
+23 Doctrine\ORM\Query\Parser::QueryLanguage()
+22 Doctrine\ORM\Query\Parser::getAST()
+21 Doctrine\ORM\Query\Parser::parse()
+20 Doctrine\ORM\Query::_parse()
+19 Doctrine\ORM\Query::_doExecute()
+18 Doctrine\ORM\AbstractQuery::executeIgnoreQueryCache(NULL, 1)
+17 Doctrine\ORM\AbstractQuery::execute(NULL, 1)
+16 Doctrine\ORM\AbstractQuery::getResult()
+15 Neos\Flow\Persistence\Doctrine\Query_Original::getResult()
+14 Neos\Flow\Persistence\Doctrine\QueryResult_Original::initialize()
+13 Neos\Flow\Persistence\Doctrine\QueryResult_Original::rewind()
+12 Neos\Flow\Mvc\View\JsonView_Original::transformValue(Neos\Flow\Persistence\Doctrine\QueryResult, array|1|)
+11 Neos\Flow\Mvc\View\JsonView_Original::renderArray()
+10 Neos\Flow\Mvc\View\JsonView_Original::render()
+9 Neos\Flow\Mvc\Controller\ActionController_Original::callActionMethod()
+8 Neos\Flow\Mvc\Controller\ActionController_Original::processRequest(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+7 Neos\Flow\Mvc\Dispatcher_Original::initiateDispatchLoop(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+6 Neos\Flow\Mvc\Dispatcher_Original::dispatch(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+5 Neos\Flow\Mvc\DispatchComponent_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+4 Neos\Flow\Http\Component\ComponentChain_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+3 Neos\Flow\Http\Component\ComponentChain_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+2 Neos\Flow\Http\RequestHandler::handleRequest()
+1 Neos\Flow\Core\Bootstrap::run()
+
+Previous exception: Exception in line 483 of /var/www/lux/Packages/Libraries/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php: SELECT e FROM AgzHack\Lux\Domain\Model\LightMarker e LEFT JOIN e.coordinate coordinate0 WHERE coordinate0.latitude <= ?1 AND coordinate0.latitude >= ?2 AND coordinate0.longitude >= ?3 AND coordinate0.longitude <= ?4
+
+31 Doctrine\ORM\Query\QueryException::dqlError("SELECT e FROM AgzHack\Lux\Domain\Model\LightMarker…e0.longitude >= ?3 AND coordinate0.longitude <= ?4")
+30 Doctrine\ORM\Query\Parser::semanticalError("line 0, col 76 near 'coordinate0 WHERE': Error: Cl…el\LightMarker has no association named coordinate")
+29 Doctrine\ORM\Query\Parser::JoinAssociationPathExpression()
+28 Doctrine\ORM\Query\Parser::JoinAssociationDeclaration()
+27 Doctrine\ORM\Query\Parser::Join()
+26 Doctrine\ORM\Query\Parser::IdentificationVariableDeclaration()
+25 Doctrine\ORM\Query\Parser::FromClause()
+24 Doctrine\ORM\Query\Parser::SelectStatement()
+23 Doctrine\ORM\Query\Parser::QueryLanguage()
+22 Doctrine\ORM\Query\Parser::getAST()
+21 Doctrine\ORM\Query\Parser::parse()
+20 Doctrine\ORM\Query::_parse()
+19 Doctrine\ORM\Query::_doExecute()
+18 Doctrine\ORM\AbstractQuery::executeIgnoreQueryCache(NULL, 1)
+17 Doctrine\ORM\AbstractQuery::execute(NULL, 1)
+16 Doctrine\ORM\AbstractQuery::getResult()
+15 Neos\Flow\Persistence\Doctrine\Query_Original::getResult()
+14 Neos\Flow\Persistence\Doctrine\QueryResult_Original::initialize()
+13 Neos\Flow\Persistence\Doctrine\QueryResult_Original::rewind()
+12 Neos\Flow\Mvc\View\JsonView_Original::transformValue(Neos\Flow\Persistence\Doctrine\QueryResult, array|1|)
+11 Neos\Flow\Mvc\View\JsonView_Original::renderArray()
+10 Neos\Flow\Mvc\View\JsonView_Original::render()
+9 Neos\Flow\Mvc\Controller\ActionController_Original::callActionMethod()
+8 Neos\Flow\Mvc\Controller\ActionController_Original::processRequest(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+7 Neos\Flow\Mvc\Dispatcher_Original::initiateDispatchLoop(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+6 Neos\Flow\Mvc\Dispatcher_Original::dispatch(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+5 Neos\Flow\Mvc\DispatchComponent_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+4 Neos\Flow\Http\Component\ComponentChain_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+3 Neos\Flow\Http\Component\ComponentChain_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+2 Neos\Flow\Http\RequestHandler::handleRequest()
+1 Neos\Flow\Core\Bootstrap::run()
+
+
+HTTP REQUEST:
+GET /light-markers?northEast[latitude]=1&northEast[longitude]=2&southWest[latitude]=2&southWest[longitude]=5 HTTP/1.1
+Host: localhost:1003
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+Upgrade-Insecure-Requests: 1
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cache-Control: max-age=0
+
+
+
+HTTP RESPONSE:
+[response was empty]
+
+PHP PROCESS:
+Inode: 3952909
+PID: 186
+UID: 1000
+GID: 1000
+User: 
+
+    [array] => 
+        previousException:
+        [string] => Exception in line 483 of /var/www/lux/Packages/Libraries/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php: SELECT e FROM AgzHack\Lux\Domain\Model\LightMarker e LEFT JOIN e.coordinate coordinate0 WHERE coordinate0.latitude <= ?1 AND coordinate0.latitude >= ?2 AND coordinate0.longitude >= ?3 AND coordinate0.longitude <= ?4
+

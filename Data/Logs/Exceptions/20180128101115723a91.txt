@@ -1,0 +1,20 @@
+Exception in line 103 of /var/www/lux/Data/Temporary/Development/Cache/Code/Flow_Object_Classes/Neos_Flow_Security_Authentication_AuthenticationProviderManager.php: Call to a member function setAuthenticationEntryPoint() on null
+
+14 Neos\Flow\Security\Authentication\AuthenticationProviderManager_Original::buildProvidersAndTokensFromConfiguration(array|1|)
+13 Neos\Flow\Security\Authentication\AuthenticationProviderManager_Original::injectSettings(array|17|)
+12 Neos\Flow\Security\Authentication\AuthenticationProviderManager::Flow_Proxy_injectProperties()
+11 Neos\Flow\Security\Authentication\AuthenticationProviderManager::__construct()
+10 Neos\Utility\ObjectAccess::instantiateClass("Neos\Flow\Security\Authentication\AuthenticationProviderManager", array|0|)
+9 Neos\Flow\ObjectManagement\ObjectManager::instantiateClass("Neos\Flow\Security\Authentication\AuthenticationProviderManager", array|0|)
+8 Neos\Flow\ObjectManagement\ObjectManager::get("Neos\Flow\Security\Authentication\AuthenticationManagerInterface")
+7 Neos\Flow\Security\Context::Flow_Proxy_injectProperties()
+6 Neos\Flow\Security\Context::__construct()
+5 Neos\Utility\ObjectAccess::instantiateClass("Neos\Flow\Security\Context", array|0|)
+4 Neos\Flow\ObjectManagement\ObjectManager::instantiateClass("Neos\Flow\Security\Context", array|0|)
+3 Neos\Flow\ObjectManagement\ObjectManager::get("Neos\Flow\Security\Context")
+2 Neos\Flow\Cli\CommandRequestHandler::handleRequest()
+1 Neos\Flow\Core\Bootstrap::run()
+
+
+    [array] => 
+

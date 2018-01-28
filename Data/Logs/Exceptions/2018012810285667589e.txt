@@ -1,0 +1,23 @@
+Exception #1169144299 in line 160 of /var/www/lux/Packages/Framework/Neos.Flow/Classes/Aop/Pointcut/PointcutExpressionParser.php: Syntax error: "(" expected in ".*", defined in Policy privilege "AgzHack.Api:LightMarkersController.allAction"
+
+17 Neos\Flow\Aop\Pointcut\PointcutExpressionParser::parseDesignatorMethod("&&", "AgzHack\Api\Controller\LightMarkersController->.*", Neos\Flow\Aop\Pointcut\PointcutFilterComposite)
+16 Neos\Flow\Aop\Pointcut\PointcutExpressionParser::parse("method(AgzHack\Api\Controller\LightMarkersController->.*)", "Policy privilege "AgzHack.Api:LightMarkersController.allAction"")
+15 Neos\Flow\Security\Authorization\Privilege\Method\MethodPrivilege::getPointcutFilterComposite()
+14 Neos\Flow\Security\Authorization\Privilege\Method\MethodPrivilegePointcutFilter::buildPointcutFilters()
+13 Neos\Flow\Security\Authorization\Privilege\Method\MethodPrivilegePointcutFilter::reduceTargetClassNames(Neos\Flow\Aop\Builder\ClassNameIndex)
+12 Neos\Flow\Aop\Pointcut\PointcutFilterComposite::reduceTargetClassNames(Neos\Flow\Aop\Builder\ClassNameIndex)
+11 Neos\Flow\Aop\Pointcut\Pointcut::reduceTargetClassNames(Neos\Flow\Aop\Builder\ClassNameIndex)
+10 Neos\Flow\Aop\AspectContainer::reduceTargetClassNames(Neos\Flow\Aop\Builder\ClassNameIndex)
+9 Neos\Flow\Aop\Builder\ProxyClassBuilder::build()
+8 Neos\Flow\Command\CoreCommandController::compileCommand(FALSE)
+7 call_user_func_array(array|2|, array|1|)
+6 Neos\Flow\Cli\CommandController::callCommandMethod()
+5 Neos\Flow\Cli\CommandController::processRequest(Neos\Flow\Cli\Request, Neos\Flow\Cli\Response)
+4 Neos\Flow\Mvc\Dispatcher::initiateDispatchLoop(Neos\Flow\Cli\Request, Neos\Flow\Cli\Response)
+3 Neos\Flow\Mvc\Dispatcher::dispatch(Neos\Flow\Cli\Request, Neos\Flow\Cli\Response)
+2 Neos\Flow\Cli\CommandRequestHandler::handleRequest()
+1 Neos\Flow\Core\Bootstrap::run()
+
+
+    [array] => 
+

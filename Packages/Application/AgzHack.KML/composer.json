@@ -1,0 +1,18 @@
+{
+    "description": "",
+    "type": "neos-package",
+    "name": "agzhack/kml",
+    "require": {
+        "neos/flow": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "AgzHack\\KML\\": "Classes/"
+        }
+    },
+    "extra": {
+        "neos": {
+            "package-key": "AgzHack.KML"
+        }
+    }
+}

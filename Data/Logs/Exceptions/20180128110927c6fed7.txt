@@ -1,0 +1,60 @@
+Exception #1355480641 in line 312 of /var/www/lux/Packages/Framework/Neos.Flow/Classes/Core/Booting/Scripts.php: syntax error, unexpected ';', expecting ',' or ')'
+
+  Type: ParseError
+  File: Packages/Application/AgzHack.Auth/Classes/Service/AuthService.php
+  Line: 92
+
+17 Neos\Flow\Core\Booting\Scripts::executeCommand("neos.flow:core:compile", array|17|)
+16 Neos\Flow\Core\Booting\Scripts::initializeProxyClasses(Neos\Flow\Core\Bootstrap)
+15 Neos\Flow\Core\Booting\Scripts::recompileClasses(Neos\Flow\Core\Bootstrap)
+14 call_user_func(array|2|, Neos\Flow\Core\Bootstrap)
+13 Neos\Flow\Core\Booting\Step::__invoke(Neos\Flow\Core\Bootstrap)
+12 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+11 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+10 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+9 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+8 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+7 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+6 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+5 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+4 Neos\Flow\Core\Booting\Sequence::invoke(Neos\Flow\Core\Bootstrap)
+3 Neos\Flow\Http\RequestHandler::boot()
+2 Neos\Flow\Http\RequestHandler::handleRequest()
+1 Neos\Flow\Core\Bootstrap::run()
+
+
+HTTP REQUEST:
+POST /light-markers HTTP/1.1
+Host: localhost:1003
+Connection: keep-alive
+Content-Length: 133
+Origin: chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop
+Key: 809016095965235
+Content-Type: application/json
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+Postman-Token: 5c60ca7d-f686-8817-cafe-a1e909e28482
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Cache-Control: no-cache
+
+{ "lightMarker": {
+        "coordinate": {
+            "latitude": 12.2440693,
+            "longitude": -39.0022769
+        }
+    }
+}
+
+HTTP RESPONSE:
+[response was empty]
+
+PHP PROCESS:
+Inode: 3952909
+PID: 186
+UID: 1000
+GID: 1000
+User: 
+
+    [array] => 
+

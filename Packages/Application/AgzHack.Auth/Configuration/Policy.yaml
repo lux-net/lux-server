@@ -1,0 +1,34 @@
+privilegeTargets:
+
+  'Neos\Flow\Security\Authorization\Privilege\Method\MethodPrivilege':
+
+    'AgzHack.Api:UsersController.loginAction':
+      matcher: 'method(AgzHack\Api\Controller\UsersController->loginAction())'
+
+    'AgzHack.Api:LightMarkersController.allAction':
+      matcher: 'method(AgzHack\Api\Controller\LightMarkersController->.*())'
+
+roles:
+  'AgzHack.Auth:Customer':
+    privileges:
+      -
+        privilegeTarget: 'AgzHack.Api:LightMarkersController.allAction'
+        permission: GRANT
+
+  'Neos.Flow:AuthenticatedUser':
+    privileges:
+      -
+        privilegeTarget: 'AgzHack.Api:LightMarkersController.allAction'
+        permission: GRANT
+
+  'AgzHack.Auth:Administrator':
+    privileges: []
+
+  'AgzHack.Auth:Customer':
+    privileges: []
+
+  'Neos.Flow:Everybody':
+    privileges:
+      -
+        privilegeTarget: 'AgzHack.Api:UsersController.loginAction'
+        permission: GRANT

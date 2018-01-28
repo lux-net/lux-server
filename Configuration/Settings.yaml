@@ -1,0 +1,29 @@
+#                                                                        #
+# Example Settings                                                       #
+#                                                                        #
+# This file contains settings for various parts of the application.      #
+# Copy this file to Settings.yaml, and adjust as necessary.              #
+#                                                                        #
+# Please refer to the default settings file(s) or the manuals for        #
+# possible configuration options.                                        #
+#                                                                        #
+
+Neos:
+  Flow:
+    persistence:
+      backendOptions:
+        driver: 'pdo_mysql'
+        dbname: 'lux_db'       # adjust to your database name
+        user: 'root'             # adjust to your database user
+        password: ''         # adjust to your database password
+        host: 'lux_database'
+        port: '3306'
+    security:
+      enable: TRUE
+      authentication:
+        authenticationStrategy: atLeastOneToken
+        providers:
+          TokenProvider:
+            provider: 'AgzHack\Auth\Provider\StatelessTokenProvider'
+            token: 'AgzHack\Auth\Token\StatelessToken'
+#            entryPoint: 'AgzHack\Auth\EntryPoint\StatelessToken'

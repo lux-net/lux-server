@@ -1,0 +1,18 @@
+{
+    "description": "",
+    "type": "neos-package",
+    "name": "agzhack/lightmarkerimporter",
+    "require": {
+        "neos/flow": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "AgzHack\\LightMarkerImporter\\": "Classes/"
+        }
+    },
+    "extra": {
+        "neos": {
+            "package-key": "AgzHack.LightMarkerImporter"
+        }
+    }
+}

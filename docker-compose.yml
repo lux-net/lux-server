@@ -1,0 +1,26 @@
+version: '2'
+services:
+  lux_server:
+    build: .
+    container_name: 'lux_server'
+    ports:
+     - "1003:80"
+    volumes:
+     - .:/var/www/lux
+    depends_on:
+     - lux_database
+  lux_database:
+    image: mysql
+    container_name: 'lux_database'
+    ports:
+     - "3002:3306"
+    environment:
+     MYSQL_ALLOW_EMPTY_PASSWORD: 1
+  lux_phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+     - "2001:80"
+    depends_on:
+     - lux_database
+    links:
+     - "lux_database:db"

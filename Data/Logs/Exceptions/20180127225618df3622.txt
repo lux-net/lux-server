@@ -1,0 +1,33 @@
+Exception in line 309 of /var/www/lux/Packages/Libraries/doctrine/orm/lib/Doctrine/ORM/Query.php: Too many parameters: the query defines 0 parameters and you bound 3
+
+27 Doctrine\ORM\Query\QueryException::tooManyParameters(0, 3)
+26 Doctrine\ORM\Query::_doExecute()
+25 Doctrine\ORM\AbstractQuery::executeIgnoreQueryCache(NULL, NULL)
+24 Doctrine\ORM\AbstractQuery::execute()
+23 AgzHack\Lux\Domain\Repository\LightMarkerDoctrineRepository_Original::findNearestMarker(AgzHack\Lux\Domain\Model\LightMarker)
+22 call_user_func_array(array|2|, array|1|)
+21 Neos\Flow\ObjectManagement\DependencyInjection\DependencyProxy::__call("findNearestMarker", array|1|)
+20 AgzHack\Lux\Command\LuxCommandController_Original::testCommand()
+19 call_user_func_array(array|2|, array|0|)
+18 Neos\Flow\Cli\CommandController_Original::callCommandMethod()
+17 Neos\Flow\Cli\CommandController_Original::processRequest(Neos\Flow\Cli\Request, Neos\Flow\Cli\Response)
+16 Neos\Flow\Mvc\Dispatcher_Original::initiateDispatchLoop(Neos\Flow\Cli\Request, Neos\Flow\Cli\Response)
+15 Neos\Flow\Mvc\Dispatcher_Original::dispatch(Neos\Flow\Cli\Request, Neos\Flow\Cli\Response)
+14 Neos\Flow\Cli\CommandRequestHandler::Neos\Flow\Cli\{closure}()
+13 Closure::__invoke()
+12 Neos\Flow\Security\Context_Original::withoutAuthorizationChecks(Closure)
+11 Neos\Flow\Security\Context::withoutAuthorizationChecks(Closure)
+10 call_user_func_array(array|2|, array|1|)
+9 Neos\Flow\Security\Context::Flow_Aop_Proxy_invokeJoinPoint(Neos\Flow\Aop\JoinPoint)
+8 Neos\Flow\Aop\Advice\AdviceChain::proceed(Neos\Flow\Aop\JoinPoint)
+7 Neos\Flow\Session\Aspect\LazyLoadingAspect_Original::callMethodOnOriginalSessionObject(Neos\Flow\Aop\JoinPoint)
+6 Neos\Flow\Aop\Advice\AroundAdvice::invoke(Neos\Flow\Aop\JoinPoint)
+5 Neos\Flow\Aop\Advice\AdviceChain::proceed(Neos\Flow\Aop\JoinPoint)
+4 Neos\Flow\Security\Context::withoutAuthorizationChecks(Closure)
+3 Neos\Flow\Cli\CommandRequestHandler::handleRequest()
+2 Neos\Flow\Core\Bootstrap::run()
+1 require("/var/www/lux/Packages/Framework/Neos.Flow/Scripts/flow.php")
+
+
+    [array] => 
+

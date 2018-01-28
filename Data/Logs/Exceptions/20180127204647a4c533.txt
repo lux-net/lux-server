@@ -1,0 +1,38 @@
+Exception: Required class "AgzHack\Lux\Service\LightMarkerClusterService" could not be loaded properly for reflection.
+
+Possible reasons are:
+
+ * Requiring non-existent classes
+ * Using non-supported annotations
+ * Class-/filename missmatch.
+
+The "Neos.Flow.object.excludeClasses" setting can be used to skip classes from being reflected.
+
+24 Neos\Flow\Reflection\ClassReflection::Neos\Flow\Reflection\{closure}("AgzHack\Lux\Service\LightMarkerClusterService")
+23 spl_autoload_call("AgzHack\Lux\Service\LightMarkerClusterService")
+22 ReflectionClass::__construct("AgzHack\Lux\Service\LightMarkerClusterService")
+21 Neos\Flow\Reflection\ClassReflection::__construct("AgzHack\Lux\Service\LightMarkerClusterService")
+20 Neos\Flow\Reflection\ReflectionService::reflectClass("AgzHack\Lux\Service\LightMarkerClusterService")
+19 Neos\Flow\Reflection\ReflectionService::Neos\Flow\Reflection\{closure}("AgzHack\Lux\Service\LightMarkerClusterService")
+18 array_filter(array|8|, Closure)
+17 Neos\Flow\Reflection\ReflectionService::reflectEmergedClasses()
+16 Neos\Flow\Reflection\ReflectionService::buildReflectionData(array|10|)
+15 Neos\Flow\ObjectManagement\CompileTimeObjectManager::initialize(array|72|)
+14 Neos\Flow\Core\Booting\Scripts::initializeObjectManagerCompileTimeFinalize(Neos\Flow\Core\Bootstrap)
+13 call_user_func(array|2|, Neos\Flow\Core\Bootstrap)
+12 Neos\Flow\Core\Booting\Step::__invoke(Neos\Flow\Core\Bootstrap)
+11 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+10 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+9 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+8 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+7 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+6 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+5 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+4 Neos\Flow\Core\Booting\Sequence::invoke(Neos\Flow\Core\Bootstrap)
+3 Neos\Flow\Cli\CommandRequestHandler::boot("Compiletime")
+2 Neos\Flow\Cli\CommandRequestHandler::handleRequest()
+1 Neos\Flow\Core\Bootstrap::run()
+
+
+    [array] => 
+

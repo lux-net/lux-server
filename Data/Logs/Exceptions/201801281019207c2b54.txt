@@ -1,0 +1,101 @@
+Exception in line 128 of /var/www/lux/Packages/Libraries/doctrine/dbal/lib/Doctrine/DBAL/DBALException.php: An exception occurred while executing 'INSERT INTO neos_flow_security_account (persistence_object_identifier, accountidentifier, authenticationprovidername, credentialssource, creationdate, expirationdate, lastsuccessfulauthenticationdate, failedauthenticationcount, roleidentifiers) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)' with params ["6a946d98-4081-4017-b52c-ba7b1d61e72d", "809016095965235", "DefaultProvider", "bcrypt=>$2a$14$Calb9dPyytE79J\/CtHMhdeFcHjUiqhXY8X.t9JhVxFtEzzarcTKSe", "2018-01-28 10:19:21", null, null, null, "AgzHack.Auth:Customer"]:
+
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '809016095965235-DefaultProvider' for key 'flow_identity_neos_flow_security_account'
+
+22 Doctrine\DBAL\Driver\AbstractMySQLDriver::convertException("An exception occurred while executing 'INSERT INTO…for key 'flow_identity_neos_flow_security_account'", Doctrine\DBAL\Driver\PDOException)
+21 Doctrine\DBAL\DBALException::driverExceptionDuringQuery(Doctrine\DBAL\Driver\PDOMySql\Driver, Doctrine\DBAL\Driver\PDOException, "INSERT INTO neos_flow_security_account (persistenc…oleidentifiers) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", array|9|)
+20 Doctrine\DBAL\Statement::execute()
+19 Doctrine\ORM\Persisters\Entity\BasicEntityPersister::executeInserts()
+18 Doctrine\ORM\UnitOfWork::executeInserts(Neos\Flow\Persistence\Doctrine\Mapping\ClassMetadata)
+17 Doctrine\ORM\UnitOfWork::commit(NULL)
+16 Doctrine\ORM\EntityManager::flush()
+15 Neos\Flow\Persistence\Doctrine\PersistenceManager_Original::persistAll()
+14 Neos\Flow\Package::Neos\Flow\{closure}(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response, AgzHack\Api\Controller\UsersController, "Neos\Flow\Mvc\Dispatcher::afterControllerInvocation")
+13 Closure::__invoke(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response, AgzHack\Api\Controller\UsersController, "Neos\Flow\Mvc\Dispatcher::afterControllerInvocation")
+12 call_user_func_array(array|2|, array|4|)
+11 Neos\Flow\SignalSlot\Dispatcher::dispatch("Neos\Flow\Mvc\Dispatcher", "afterControllerInvocation", array|4|)
+10 Neos\Flow\SignalSlot\SignalAspect_Original::forwardSignalToDispatcher(Neos\Flow\Aop\JoinPoint)
+9 Neos\Flow\Aop\Advice\AbstractAdvice::invoke(Neos\Flow\Aop\JoinPoint)
+8 Neos\Flow\Mvc\Dispatcher::emitAfterControllerInvocation(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response, AgzHack\Api\Controller\UsersController)
+7 Neos\Flow\Mvc\Dispatcher_Original::initiateDispatchLoop(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+6 Neos\Flow\Mvc\Dispatcher_Original::dispatch(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+5 Neos\Flow\Mvc\DispatchComponent_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+4 Neos\Flow\Http\Component\ComponentChain_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+3 Neos\Flow\Http\Component\ComponentChain_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+2 Neos\Flow\Http\RequestHandler::handleRequest()
+1 Neos\Flow\Core\Bootstrap::run()
+
+Previous exception: Exception #23000 in line 168 of /var/www/lux/Packages/Libraries/doctrine/dbal/lib/Doctrine/DBAL/Statement.php: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '809016095965235-DefaultProvider' for key 'flow_identity_neos_flow_security_account'
+
+21 Doctrine\DBAL\Driver\PDOStatement::execute(NULL)
+20 Doctrine\DBAL\Statement::execute()
+19 Doctrine\ORM\Persisters\Entity\BasicEntityPersister::executeInserts()
+18 Doctrine\ORM\UnitOfWork::executeInserts(Neos\Flow\Persistence\Doctrine\Mapping\ClassMetadata)
+17 Doctrine\ORM\UnitOfWork::commit(NULL)
+16 Doctrine\ORM\EntityManager::flush()
+15 Neos\Flow\Persistence\Doctrine\PersistenceManager_Original::persistAll()
+14 Neos\Flow\Package::Neos\Flow\{closure}(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response, AgzHack\Api\Controller\UsersController, "Neos\Flow\Mvc\Dispatcher::afterControllerInvocation")
+13 Closure::__invoke(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response, AgzHack\Api\Controller\UsersController, "Neos\Flow\Mvc\Dispatcher::afterControllerInvocation")
+12 call_user_func_array(array|2|, array|4|)
+11 Neos\Flow\SignalSlot\Dispatcher::dispatch("Neos\Flow\Mvc\Dispatcher", "afterControllerInvocation", array|4|)
+10 Neos\Flow\SignalSlot\SignalAspect_Original::forwardSignalToDispatcher(Neos\Flow\Aop\JoinPoint)
+9 Neos\Flow\Aop\Advice\AbstractAdvice::invoke(Neos\Flow\Aop\JoinPoint)
+8 Neos\Flow\Mvc\Dispatcher::emitAfterControllerInvocation(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response, AgzHack\Api\Controller\UsersController)
+7 Neos\Flow\Mvc\Dispatcher_Original::initiateDispatchLoop(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+6 Neos\Flow\Mvc\Dispatcher_Original::dispatch(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+5 Neos\Flow\Mvc\DispatchComponent_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+4 Neos\Flow\Http\Component\ComponentChain_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+3 Neos\Flow\Http\Component\ComponentChain_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+2 Neos\Flow\Http\RequestHandler::handleRequest()
+1 Neos\Flow\Core\Bootstrap::run()
+
+Previous exception: Exception #23000 in line 105 of /var/www/lux/Packages/Libraries/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOStatement.php: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '809016095965235-DefaultProvider' for key 'flow_identity_neos_flow_security_account'
+
+22 PDOStatement::execute(NULL)
+21 Doctrine\DBAL\Driver\PDOStatement::execute(NULL)
+20 Doctrine\DBAL\Statement::execute()
+19 Doctrine\ORM\Persisters\Entity\BasicEntityPersister::executeInserts()
+18 Doctrine\ORM\UnitOfWork::executeInserts(Neos\Flow\Persistence\Doctrine\Mapping\ClassMetadata)
+17 Doctrine\ORM\UnitOfWork::commit(NULL)
+16 Doctrine\ORM\EntityManager::flush()
+15 Neos\Flow\Persistence\Doctrine\PersistenceManager_Original::persistAll()
+14 Neos\Flow\Package::Neos\Flow\{closure}(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response, AgzHack\Api\Controller\UsersController, "Neos\Flow\Mvc\Dispatcher::afterControllerInvocation")
+13 Closure::__invoke(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response, AgzHack\Api\Controller\UsersController, "Neos\Flow\Mvc\Dispatcher::afterControllerInvocation")
+12 call_user_func_array(array|2|, array|4|)
+11 Neos\Flow\SignalSlot\Dispatcher::dispatch("Neos\Flow\Mvc\Dispatcher", "afterControllerInvocation", array|4|)
+10 Neos\Flow\SignalSlot\SignalAspect_Original::forwardSignalToDispatcher(Neos\Flow\Aop\JoinPoint)
+9 Neos\Flow\Aop\Advice\AbstractAdvice::invoke(Neos\Flow\Aop\JoinPoint)
+8 Neos\Flow\Mvc\Dispatcher::emitAfterControllerInvocation(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response, AgzHack\Api\Controller\UsersController)
+7 Neos\Flow\Mvc\Dispatcher_Original::initiateDispatchLoop(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+6 Neos\Flow\Mvc\Dispatcher_Original::dispatch(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+5 Neos\Flow\Mvc\DispatchComponent_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+4 Neos\Flow\Http\Component\ComponentChain_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+3 Neos\Flow\Http\Component\ComponentChain_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+2 Neos\Flow\Http\RequestHandler::handleRequest()
+1 Neos\Flow\Core\Bootstrap::run()
+
+
+HTTP REQUEST:
+POST /login HTTP/1.1
+Host: localhost:1003
+User-Agent: curl/7.47.0
+Accept: */*
+Content-Length: 253
+Content-Type: application/x-www-form-urlencoded
+
+token=EAAHdm2iYTyUBAOTkGlg0yHGnOZClVdGX1Ci81uv8orxlxZAn6ZC6JtzPRqt9ErVXJuV0CBrwP57ACPOpAuKYwZCSWupRyq7xYHYiZCIBQ5UTNebz0BtqZAh1aZAd7Weu52pvRn4hiCw1ftoJQ1XZAPaZC7UEdJspRZAKlkZAIqVqcd1ZBC2rHk2KX47oreeOXucmlc8YM3vBTLaUzXGpCUTrpQEm6MPOkKcnC9V2wEHuqhExdAZDZD
+
+HTTP RESPONSE:
+null
+
+PHP PROCESS:
+Inode: 3952909
+PID: 16
+UID: 1000
+GID: 1000
+User: 
+
+    [array] => 
+        previousException:
+        [string] => Exception #23000 in line 168 of /var/www/lux/Packages/Libraries/doctrine/dbal/lib/Doctrine/DBAL/Statement.php: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '809016095965235-DefaultProvider' for key 'flow_identity_neos_flow_security_account'
+

@@ -1,0 +1,18 @@
+{
+    "description": "",
+    "type": "neos-package",
+    "name": "agzhack/geo",
+    "require": {
+        "neos/flow": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "AgzHack\\Geo\\": "Classes/"
+        }
+    },
+    "extra": {
+        "neos": {
+            "package-key": "AgzHack.Geo"
+        }
+    }
+}

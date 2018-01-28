@@ -1,0 +1,17 @@
+Exception #1265213849 in line 357 of /var/www/lux/Packages/Framework/Neos.Flow/Classes/ObjectManagement/DependencyInjection/ProxyClassBuilder.php: The object "AgzHack\Auth\Service\AuthService" which was specified as a property in the object configuration of object "AgzHack\Api\Controller\UsersController" (automatically registered class) does not exist. Check for spelling mistakes and if that dependency is correctly configured.
+
+11 Neos\Flow\ObjectManagement\DependencyInjection\ProxyClassBuilder::buildPropertyInjectionCodeByString(Neos\Flow\ObjectManagement\Configuration\Configuration, Neos\Flow\ObjectManagement\Configuration\ConfigurationProperty, "authService", "AgzHack\Auth\Service\AuthService")
+10 Neos\Flow\ObjectManagement\DependencyInjection\ProxyClassBuilder::buildPropertyInjectionCode(Neos\Flow\ObjectManagement\Configuration\Configuration)
+9 Neos\Flow\ObjectManagement\DependencyInjection\ProxyClassBuilder::build()
+8 Neos\Flow\Command\CoreCommandController::compileCommand(FALSE)
+7 call_user_func_array(array|2|, array|1|)
+6 Neos\Flow\Cli\CommandController::callCommandMethod()
+5 Neos\Flow\Cli\CommandController::processRequest(Neos\Flow\Cli\Request, Neos\Flow\Cli\Response)
+4 Neos\Flow\Mvc\Dispatcher::initiateDispatchLoop(Neos\Flow\Cli\Request, Neos\Flow\Cli\Response)
+3 Neos\Flow\Mvc\Dispatcher::dispatch(Neos\Flow\Cli\Request, Neos\Flow\Cli\Response)
+2 Neos\Flow\Cli\CommandRequestHandler::handleRequest()
+1 Neos\Flow\Core\Bootstrap::run()
+
+
+    [array] => 
+

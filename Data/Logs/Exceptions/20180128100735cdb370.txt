@@ -1,0 +1,26 @@
+Exception #1355480641 in line 312 of /var/www/lux/Packages/Framework/Neos.Flow/Classes/Core/Booting/Scripts.php: privilege target "AgzHack.Api:UsersController.loginAction", referenced in role configuration "Neos.Flow:Everybody" is not defined!
+
+  Type: Neos\Flow\Security\Exception
+  Code: 1395869320
+  File: Packages/Framework/Neos.Flow/Classes/Security/Policy/PolicyService.php
+  Line: 123
+
+Open Data/Logs/Exceptions/20180128100735b314fa.txt for a full stack trace.
+
+13 Neos\Flow\Core\Booting\Scripts::executeCommand("neos.flow:core:compile", array|17|)
+12 Neos\Flow\Core\Booting\Scripts::initializeProxyClasses(Neos\Flow\Core\Bootstrap)
+11 call_user_func(array|2|, Neos\Flow\Core\Bootstrap)
+10 Neos\Flow\Core\Booting\Step::__invoke(Neos\Flow\Core\Bootstrap)
+9 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+8 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+7 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+6 Neos\Flow\Core\Booting\Sequence::invokeStep(Neos\Flow\Core\Booting\Step, Neos\Flow\Core\Bootstrap)
+5 Neos\Flow\Core\Booting\Sequence::invoke(Neos\Flow\Core\Bootstrap)
+4 Neos\Flow\Cli\CommandRequestHandler::boot("Runtime")
+3 Neos\Flow\Cli\CommandRequestHandler::handleRequest()
+2 Neos\Flow\Core\Bootstrap::run()
+1 require("/var/www/lux/Packages/Framework/Neos.Flow/Scripts/flow.php")
+
+
+    [array] => 
+

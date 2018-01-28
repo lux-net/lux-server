@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<phpunit
+		beStrictAboutChangesToGlobalState="true"
+		beStrictAboutOutputDuringTests="true"
+		bootstrap="FunctionalTestBootstrap.php"
+		convertErrorsToExceptions="true"
+		convertNoticesToExceptions="true"
+		convertWarningsToExceptions="true"
+		timeoutForSmallTests="0">
+	<testsuites>
+		<testsuite name="Application tests">
+			<directory>../../../Packages/Application/*/Tests/Functional</directory>
+		</testsuite>
+		<testsuite name="Framework tests">
+			<directory>../../../Packages/Framework/*/Tests/Functional</directory>
+		</testsuite>
+		<testsuite name="Neos tests">
+			<directory>../../../Packages/Neos/*/Tests/Functional</directory>
+		</testsuite>
+		<testsuite name="Plugins tests">
+			<directory>../../../Packages/Plugins/*/Tests/Functional</directory>
+		</testsuite>
+		<testsuite name="Sites tests">
+			<directory>../../../Packages/Sites/*/Tests/Functional</directory>
+		</testsuite>
+		<!-- A catch all testsuite for everything else -->
+		<testsuite name="Other tests">
+			<directory>../../../Packages/*/*/Tests/Functional</directory>
+			<exclude>../../../Packages/Libraries</exclude>
+			<exclude>../../../Packages/Application</exclude>
+			<exclude>../../../Packages/Framework</exclude>
+			<exclude>../../../Packages/Neos</exclude>
+			<exclude>../../../Packages/Plugins</exclude>
+			<exclude>../../../Packages/Sites</exclude>
+		</testsuite>
+	</testsuites>
+	<filter>
+		<whitelist addUncoveredFilesFromWhitelist="true">
+			<directory>../../../Data/Temporary/Testing/Cache/Flow_Object_Classes</directory>
+		</whitelist>
+	</filter>
+	<logging>
+		<log type="junit" target="../../Reports/FunctionalTests.xml" logIncompleteSkipped="false"/>
+		<log type="testdox-text" target="../../Reports/FunctionalTestDox.txt"/>
+	</logging>
+	<php>
+		<ini name="date.timezone" value="Africa/Tunis" />
+		<env name="FLOW_REWRITEURLS" value="1"/>
+	</php>
+</phpunit>

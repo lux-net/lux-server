@@ -1,0 +1,39 @@
+Exception #1313663277 in line 198 of /var/www/lux/Packages/Framework/Neos.Flow/Classes/Persistence/Repository.php: The object of type "AgzHack\Auth\Domain\Model\UserAccount" (identifier: "e924b986-f3cc-4176-8cf9-73bf841aa36e") which was passed to EntityManager->update() is not a previously persisted object. Check the code which updates this entity and make sure that only objects are updated which were persisted before. Alternatively use add() for persisting new objects."
+
+13 Neos\Flow\Persistence\Doctrine\PersistenceManager_Original::update(AgzHack\Auth\Domain\Model\UserAccount)
+12 Neos\Flow\Persistence\Repository::update(AgzHack\Auth\Domain\Model\UserAccount)
+11 AgzHack\Api\Controller\UsersController_Original::loginAction("EAAHdm2iYTyUBAOTkGlg0yHGnOZClVdGX1Ci81uv8orxlxZAn6…lc8YM3vBTLaUzXGpCUTrpQEm6MPOkKcnC9V2wEHuqhExdAZDZD")
+10 call_user_func_array(array|2|, array|1|)
+9 Neos\Flow\Mvc\Controller\ActionController_Original::callActionMethod()
+8 Neos\Flow\Mvc\Controller\ActionController_Original::processRequest(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+7 Neos\Flow\Mvc\Dispatcher_Original::initiateDispatchLoop(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+6 Neos\Flow\Mvc\Dispatcher_Original::dispatch(Neos\Flow\Mvc\ActionRequest, Neos\Flow\Http\Response)
+5 Neos\Flow\Mvc\DispatchComponent_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+4 Neos\Flow\Http\Component\ComponentChain_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+3 Neos\Flow\Http\Component\ComponentChain_Original::handle(Neos\Flow\Http\Component\ComponentContext)
+2 Neos\Flow\Http\RequestHandler::handleRequest()
+1 Neos\Flow\Core\Bootstrap::run()
+
+
+HTTP REQUEST:
+POST /login HTTP/1.1
+Host: localhost:1003
+User-Agent: curl/7.47.0
+Accept: */*
+Content-Length: 253
+Content-Type: application/x-www-form-urlencoded
+
+token=EAAHdm2iYTyUBAOTkGlg0yHGnOZClVdGX1Ci81uv8orxlxZAn6ZC6JtzPRqt9ErVXJuV0CBrwP57ACPOpAuKYwZCSWupRyq7xYHYiZCIBQ5UTNebz0BtqZAh1aZAd7Weu52pvRn4hiCw1ftoJQ1XZAPaZC7UEdJspRZAKlkZAIqVqcd1ZBC2rHk2KX47oreeOXucmlc8YM3vBTLaUzXGpCUTrpQEm6MPOkKcnC9V2wEHuqhExdAZDZD
+
+HTTP RESPONSE:
+[response was empty]
+
+PHP PROCESS:
+Inode: 3952909
+PID: 15
+UID: 1000
+GID: 1000
+User: 
+
+    [array] => 
+

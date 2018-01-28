@@ -1,3 +1,6 @@
 # lux-server
 
-## docker-compose up
+## Rodando
+sudo docker-compose up
+
+Qualquer dúvida, entrar em contato!
